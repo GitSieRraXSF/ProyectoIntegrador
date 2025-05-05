@@ -2,61 +2,36 @@ package Model;
 
 public class Usuario {
 
-	private int Usuario1;
-	private String Nombre, correoinstitucional, cedula, estado, rol;
-	
-	public int getUsuario1() {
-		return Usuario1;
+	private int Nro_id, Codigo_Rol, ClaveAsignada;
+
+	public int getNro_id() {
+		return Nro_id;
 	}
-	public void setUsuario1(int usuario1) {
-		Usuario1 = usuario1;
+
+	public void setNro_id(int nro_id) {
+		Nro_id = nro_id;
 	}
-	public String getNombre() {
-		return Nombre;
+
+	public int getCodigo_Rol() {
+		return Codigo_Rol;
 	}
-	public void setNombre(String nombre) {
-		Nombre = nombre;
+
+	public void setCodigo_Rol(int codigo_Rol) {
+		Codigo_Rol = codigo_Rol;
 	}
-	public String getCorreoinstitucional() {
-		return correoinstitucional;
+
+	public int getClaveAsignada() {
+		return ClaveAsignada;
 	}
-	public void setCorreoinstitucional(String correoinstitucional) {
-		this.correoinstitucional = correoinstitucional;
+
+	public void setClaveAsignada(int claveAsignada) {
+		ClaveAsignada = claveAsignada;
 	}
-	public String getCedula() {
-		return cedula;
-	}
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	public String getRol() {
-		return rol;
-	}
-	public void setRol(String rol) {
-		this.rol = rol;
+
+	public Usuario(int nro_id, int codigo_Rol, int claveAsignada) {
+		Nro_id = nro_id;
+		Codigo_Rol = codigo_Rol;
+		ClaveAsignada = claveAsignada;
 	}
 	
-	public Usuario(int usuario1, String nombre, String correoinstitucional, String cedula, String estado, String rol) {
-		Usuario1 = usuario1;
-		Nombre = nombre;
-		this.correoinstitucional = correoinstitucional;
-		this.cedula = cedula;
-		this.estado = estado;
-		this.rol = rol;
-	}
-	@Override
-	public String toString() {
-		return "Usuario [Usuario1=" + Usuario1 + ", Nombre=" + Nombre + ", correoinstitucional=" + correoinstitucional
-				+ ", cedula=" + cedula + ", estado=" + estado + ", rol=" + rol + "]";
-	}
-	
-	public void InfoUsuario() {
-		System.out.println(toString());
-	}
 }
