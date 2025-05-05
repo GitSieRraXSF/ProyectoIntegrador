@@ -1,6 +1,6 @@
 package Model;
 
-public class Estudiante extends Usuario{
+public class Estudiante extends Usuario {
 
 	private String Nombre, Apellido, Fecha_nac;
 	private long Cedula;
@@ -36,6 +36,7 @@ public class Estudiante extends Usuario{
 	public void setCod_Semestre(int cod_Semestre) {
 		Cod_Semestre = cod_Semestre;
 	}
+	
 	public Estudiante(int nro_id, int codigo_Rol, int claveAsignada, String nombre, String apellido, String fecha_nac,
 			long cedula, int cod_Semestre) {
 		super(nro_id, codigo_Rol, claveAsignada);
