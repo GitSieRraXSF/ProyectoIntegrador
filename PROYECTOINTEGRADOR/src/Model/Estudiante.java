@@ -5,6 +5,7 @@ public class Estudiante extends Usuario{
 	private String Nombre, Apellido, Fecha_nac;
 	private long Cedula;
 	private int Cod_Semestre;
+	
 	public String getNombre() {
 		return Nombre;
 	}
