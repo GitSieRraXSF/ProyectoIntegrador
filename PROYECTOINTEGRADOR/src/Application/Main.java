@@ -10,7 +10,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("MAIN.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("MenuRol.fxml"));
 			Scene scene = new Scene(root,400,400);
 			scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 			primaryStage.setScene(scene);
