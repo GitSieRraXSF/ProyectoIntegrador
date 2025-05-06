@@ -2,24 +2,24 @@ package Data;
 
 import java.util.ArrayList;
 
-import Model.Administrador;
+import Model.Recurso;
 
-public class AdministradorDAO implements CRUD_PI<Administrador, String>{
+public class RecursoDAO implements CRUD_PI<Recurso, String>{
 
 	@Override
-	public void save(Administrador entity) {
+	public void save(Recurso entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public ArrayList<Administrador> fetch() {
+	public ArrayList<Recurso> fetch() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Administrador entity) {
+	public void update(Recurso entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -35,5 +35,4 @@ public class AdministradorDAO implements CRUD_PI<Administrador, String>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

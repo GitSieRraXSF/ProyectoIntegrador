@@ -2,24 +2,24 @@ package Data;
 
 import java.util.ArrayList;
 
-import Model.Equipo;
+import Model.SolicitudPrestamo;
 
-public class EquipoDAO implements CRUD_PI<Equipo, String>{
+public class SolicitudPrestamoDAO implements CRUD_PI<SolicitudPrestamo, String>{
 
 	@Override
-	public void save(Equipo entity) {
+	public void save(SolicitudPrestamo entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public ArrayList<Equipo> fetch() {
+	public ArrayList<SolicitudPrestamo> fetch() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Equipo entity) {
+	public void update(SolicitudPrestamo entity) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -35,5 +35,4 @@ public class EquipoDAO implements CRUD_PI<Equipo, String>{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

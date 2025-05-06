@@ -2,24 +2,24 @@ package Data;
 
 import java.util.ArrayList;
 
-import Model.Supervisor;
+import Model.Usuario;
 
-public class SupervisorDAO implements CRUD_PI<Supervisor, String>{
+public class UsuarioDAO implements CRUD_PI<Usuario, String>{
 
 	@Override
-	public void save(Supervisor entity) {
+	public void save(Usuario entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public ArrayList<Supervisor> fetch() {
+	public ArrayList<Usuario> fetch() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(Supervisor entity) {
+	public void update(Usuario entity) {
 		// TODO Auto-generated method stub
 		
 	}

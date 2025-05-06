@@ -2,36 +2,37 @@ package Model;
 
 public class Usuario {
 
-	private int Nro_id, Codigo_Rol, ClaveAsignada;
-
-	public int getNro_id() {
-		return Nro_id;
+	private int id;
+	private String Nombre, Email, rol;
+	public int getId() {
+		return id;
 	}
-
-	public void setNro_id(int nro_id) {
-		Nro_id = nro_id;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public int getCodigo_Rol() {
-		return Codigo_Rol;
+	public String getNombre() {
+		return Nombre;
 	}
-
-	public void setCodigo_Rol(int codigo_Rol) {
-		Codigo_Rol = codigo_Rol;
+	public void setNombre(String nombre) {
+		Nombre = nombre;
 	}
-
-	public int getClaveAsignada() {
-		return ClaveAsignada;
+	public String getEmail() {
+		return Email;
 	}
-
-	public void setClaveAsignada(int claveAsignada) {
-		ClaveAsignada = claveAsignada;
+	public void setEmail(String email) {
+		Email = email;
 	}
-
-	public Usuario(int nro_id, int codigo_Rol, int claveAsignada) {
-		Nro_id = nro_id;
-		Codigo_Rol = codigo_Rol;
-		ClaveAsignada = claveAsignada;
+	public String getRol() {
+		return rol;
+	}
+	public void setRol(String rol) {
+		this.rol = rol;
 	}
 	
+	public Usuario(int id, String nombre, String email, String rol) {
+		this.id = id;
+		Nombre = nombre;
+		Email = email;
+		this.rol = rol;
+	}
 }
