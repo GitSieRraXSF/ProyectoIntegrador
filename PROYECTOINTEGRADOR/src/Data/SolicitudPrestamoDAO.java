@@ -40,12 +40,12 @@ public class SolicitudPrestamoDAO implements CRUD_PI<SolicitudPrestamo, String> 
 		String sql = "SELECT * FROM SolicitudPrestamo";
 		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				int iD = rs.getInt("iD");
-				int usuarioID = rs.getInt("usuarioID");
-				int recursoID = rs.getInt("recursoID");
+				int iD = rs.getInt("IDSolicitud");
+				int usuarioID = rs.getInt("IDUsuario");
+				int recursoID = rs.getInt("IDRecurso");
 				String fechaSolicitud = rs.getString("fechaSolicitud");
-				String fechainicio = rs.getString("fechainicio");
-				String fechafinPrevista = rs.getString("fechafinPrevista");
+				String fechainicio = rs.getString("HoraInicio");
+				String fechafinPrevista = rs.getString("HoraFin");
 				String fechaDevolucionReal = rs.getString("fechaDevolucionReal");
 				boolean estado = rs.getBoolean("Estado");
 				SolicitudPrestamo solicitud = new SolicitudPrestamo(iD, usuarioID, recursoID, fechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
@@ -58,9 +58,20 @@ public class SolicitudPrestamoDAO implements CRUD_PI<SolicitudPrestamo, String> 
 	}
 
 	@Override
-	public void update(SolicitudPrestamo entity) {
-		// TODO Auto-generated method stub
-		
+	public void update(SolicitudPrestamo solicitud) {
+		String sql = "UPDATE solicitud SET IDSolicitud=?, IDRecurso=?, fechaSolicitud=?, fechaDevolucionREAL=?, HoraInicio=?, HoraFin=?, Estado=? WHERE IDUsuario=?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, solicitud.getID());
+			stmt.setInt(2, solicitud.getRecursoID());
+			stmt.setString(3, solicitud.getFechaSolicitud());
+			stmt.setString(4, solicitud.getFechaDevolucionReal());
+			stmt.setString(5, solicitud.getFechainicio());
+			stmt.setString(6, solicitud.getFechafinPrevista());
+			stmt.setBoolean(7, solicitud.isEstado());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

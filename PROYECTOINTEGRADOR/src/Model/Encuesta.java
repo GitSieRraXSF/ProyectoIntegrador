@@ -5,8 +5,7 @@ public class Encuesta {
 	private int ID;
 	private int solicitudID;
 	private int usuarioID;
-	private float Calificacion;
-	private String Comentario, Funcionalidad, Calidad, Infraestructura;
+	private String Funcionalidad, Calidad, Infraestructura;
 	public int getID() {
 		return ID;
 	}
@@ -24,18 +23,6 @@ public class Encuesta {
 	}
 	public void setUsuarioID(int usuarioID) {
 		this.usuarioID = usuarioID;
-	}
-	public float getCalificacion() {
-		return Calificacion;
-	}
-	public void setCalificacion(float calificacion) {
-		Calificacion = calificacion;
-	}
-	public String getComentario() {
-		return Comentario;
-	}
-	public void setComentario(String comentario) {
-		Comentario = comentario;
 	}
 	public String getFuncionalidad() {
 		return Funcionalidad;
@@ -56,13 +43,11 @@ public class Encuesta {
 		Infraestructura = infraestructura;
 	}
 	
-	public Encuesta(int iD, int solicitudID, int usuarioID, float calificacion, String comentario, String funcionalidad,
-			String calidad, String infraestructura) {
+	public Encuesta(int iD, int solicitudID, int usuarioID, String funcionalidad, String calidad,
+			String infraestructura) {
 		ID = iD;
 		this.solicitudID = solicitudID;
 		this.usuarioID = usuarioID;
-		Calificacion = calificacion;
-		Comentario = comentario;
 		Funcionalidad = funcionalidad;
 		Calidad = calidad;
 		Infraestructura = infraestructura;
