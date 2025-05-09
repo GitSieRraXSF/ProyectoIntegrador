@@ -5,8 +5,8 @@ public class ReporteDevolucion {
 	private int ID;
 	private int solicitudID;
 	private int supervisorID;
-	private String FechaVerificacion, Observaciones;
-	private boolean estadoRecurso;
+	private String FechaVerificacion, Reparacion;
+	private boolean Estado;
 	
 	public int getID() {
 		return ID;
@@ -32,26 +32,26 @@ public class ReporteDevolucion {
 	public void setFechaVerificacion(String fechaVerificacion) {
 		FechaVerificacion = fechaVerificacion;
 	}
-	public String getObservaciones() {
-		return Observaciones;
+	public String getReparacion() {
+		return Reparacion;
 	}
-	public void setObservaciones(String observaciones) {
-		Observaciones = observaciones;
+	public void setReparacion(String reparacion) {
+		Reparacion = reparacion;
 	}
-	public boolean isEstadoRecurso() {
-		return estadoRecurso;
+	public boolean isEstado() {
+		return Estado;
 	}
-	public void setEstadoRecurso(boolean estadoRecurso) {
-		this.estadoRecurso = estadoRecurso;
+	public void setEstado(boolean estado) {
+		Estado = estado;
 	}
 	
-	public ReporteDevolucion(int iD, int solicitudID, int supervisorID, String fechaVerificacion, String observaciones,
-			boolean estadoRecurso) {
+	public ReporteDevolucion(int iD, int solicitudID, int supervisorID, String fechaVerificacion, String reparacion,
+			boolean estado) {
 		ID = iD;
 		this.solicitudID = solicitudID;
 		this.supervisorID = supervisorID;
 		FechaVerificacion = fechaVerificacion;
-		Observaciones = observaciones;
-		this.estadoRecurso = estadoRecurso;
+		Reparacion = reparacion;
+		Estado = estado;
 	}
 }

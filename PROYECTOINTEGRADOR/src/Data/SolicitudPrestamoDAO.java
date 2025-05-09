@@ -17,7 +17,7 @@ public class SolicitudPrestamoDAO {
 	}
 	
 	public void save(SolicitudPrestamo solicitud) {
-		String sql = "INSERT INTO SolicitudPrestamo (IDSolicitud, IDUsuario, IDRecurso, fechaSolicitud, fechaDevolucionREAL, HoraInicio, HoraFin, Estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Solicitud_Prestamo (IDSolicitud, IDUsuario, IDRecurso, fechaSolicitud, fechaDevolucionREAL, HoraInicio, HoraFin, Estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setInt(1, solicitud.getID());
 			stmt.setInt(2, solicitud.getUsuarioID());
@@ -72,9 +72,14 @@ public class SolicitudPrestamoDAO {
 		}
 	}
 	
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int IDSolicitud) {
+		String sql = "DELETE FROM Book WHERE IDSolicitud=?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setLong(1, IDSolicitud);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean authenticate(int IDSolicitud) {
