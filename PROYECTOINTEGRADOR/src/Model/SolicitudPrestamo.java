@@ -5,8 +5,10 @@ public class SolicitudPrestamo {
 	private int ID;
 	private Usuario usuarioID;
 	private Recurso RecursoID;
-	private String FechaSolicitud;
+	private String FechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal;
+	private ReporteDevolucion reportedevolucionID;
 	private boolean Estado;
+	
 	public int getID() {
 		return ID;
 	}
@@ -31,6 +33,30 @@ public class SolicitudPrestamo {
 	public void setFechaSolicitud(String fechaSolicitud) {
 		FechaSolicitud = fechaSolicitud;
 	}
+	public String getFechainicio() {
+		return fechainicio;
+	}
+	public void setFechainicio(String fechainicio) {
+		this.fechainicio = fechainicio;
+	}
+	public String getFechafinPrevista() {
+		return fechafinPrevista;
+	}
+	public void setFechafinPrevista(String fechafinPrevista) {
+		this.fechafinPrevista = fechafinPrevista;
+	}
+	public String getFechaDevolucionReal() {
+		return fechaDevolucionReal;
+	}
+	public void setFechaDevolucionReal(String fechaDevolucionReal) {
+		this.fechaDevolucionReal = fechaDevolucionReal;
+	}
+	public ReporteDevolucion getReportedevolucionID() {
+		return reportedevolucionID;
+	}
+	public void setReportedevolucionID(ReporteDevolucion reportedevolucionID) {
+		this.reportedevolucionID = reportedevolucionID;
+	}
 	public boolean isEstado() {
 		return Estado;
 	}
@@ -38,11 +64,17 @@ public class SolicitudPrestamo {
 		Estado = estado;
 	}
 	
-	public SolicitudPrestamo(int iD, Usuario usuarioID, Recurso recursoID, String fechaSolicitud, boolean estado) {
+	public SolicitudPrestamo(int iD, Usuario usuarioID, Recurso recursoID, String fechaSolicitud, String fechainicio,
+			String fechafinPrevista, String fechaDevolucionReal, ReporteDevolucion reportedevolucionID,
+			boolean estado) {
 		ID = iD;
 		this.usuarioID = usuarioID;
 		RecursoID = recursoID;
 		FechaSolicitud = fechaSolicitud;
+		this.fechainicio = fechainicio;
+		this.fechafinPrevista = fechafinPrevista;
+		this.fechaDevolucionReal = fechaDevolucionReal;
+		this.reportedevolucionID = reportedevolucionID;
 		Estado = estado;
 	}
 }

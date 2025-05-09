@@ -2,13 +2,13 @@ package Model;
 
 public class Usuario {
 
-	private int id;
-	private String Nombre, Email, rol;
-	public int getId() {
-		return id;
+	private int ID;
+	private String Nombre, email, contraseña, SancionesPendientes;
+	public int getID() {
+		return ID;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setID(int iD) {
+		ID = iD;
 	}
 	public String getNombre() {
 		return Nombre;
@@ -17,22 +17,29 @@ public class Usuario {
 		Nombre = nombre;
 	}
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
-	public String getRol() {
-		return rol;
+	public String getContraseña() {
+		return contraseña;
 	}
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+	public String getSancionesPendientes() {
+		return SancionesPendientes;
+	}
+	public void setSancionesPendientes(String sancionesPendientes) {
+		SancionesPendientes = sancionesPendientes;
 	}
 	
-	public Usuario(int id, String nombre, String email, String rol) {
-		this.id = id;
+	public Usuario(int iD, String nombre, String email, String contraseña, String sancionesPendientes) {
+		ID = iD;
 		Nombre = nombre;
-		Email = email;
-		this.rol = rol;
+		this.email = email;
+		this.contraseña = contraseña;
+		SancionesPendientes = sancionesPendientes;
 	}
 }

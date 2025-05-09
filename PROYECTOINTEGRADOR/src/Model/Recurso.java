@@ -2,14 +2,14 @@ package Model;
 
 public class Recurso {
 
-	private int Id;
-	private String Tipo, Ubicacion, softwareRequerido;
-	private boolean Estado;
-	public int getId() {
-		return Id;
+	private int ID;
+	private String Tipo, ubicacion, softwareRequerido;
+	private boolean estado;
+	public int getID() {
+		return ID;
 	}
-	public void setId(int id) {
-		Id = id;
+	public void setID(int iD) {
+		ID = iD;
 	}
 	public String getTipo() {
 		return Tipo;
@@ -18,10 +18,10 @@ public class Recurso {
 		Tipo = tipo;
 	}
 	public String getUbicacion() {
-		return Ubicacion;
+		return ubicacion;
 	}
 	public void setUbicacion(String ubicacion) {
-		Ubicacion = ubicacion;
+		this.ubicacion = ubicacion;
 	}
 	public String getSoftwareRequerido() {
 		return softwareRequerido;
@@ -30,17 +30,17 @@ public class Recurso {
 		this.softwareRequerido = softwareRequerido;
 	}
 	public boolean isEstado() {
-		return Estado;
+		return estado;
 	}
 	public void setEstado(boolean estado) {
-		Estado = estado;
+		this.estado = estado;
 	}
 	
-	public Recurso(int id, String tipo, String ubicacion, String softwareRequerido, boolean estado) {
-		Id = id;
+	public Recurso(int iD, String tipo, String ubicacion, String softwareRequerido, boolean estado) {
+		ID = iD;
 		Tipo = tipo;
-		Ubicacion = ubicacion;
+		this.ubicacion = ubicacion;
 		this.softwareRequerido = softwareRequerido;
-		Estado = estado;
+		this.estado = estado;
 	}
 }
