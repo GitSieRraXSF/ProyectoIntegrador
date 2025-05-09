@@ -2,11 +2,10 @@ package Model;
 
 public class Sancion {
 
-	private int ID, MontoMulta;
-	private Usuario usuarioID;
-	private SolicitudPrestamo solicitudID;
+	private int ID, valorMulta;
+	private int usuarioID;
+	private int solicitudID;
 	private String Motivo;
-	private boolean Pagado;
 	
 	public int getID() {
 		return ID;
@@ -14,22 +13,22 @@ public class Sancion {
 	public void setID(int iD) {
 		ID = iD;
 	}
-	public int getMontoMulta() {
-		return MontoMulta;
+	public int getValorMulta() {
+		return valorMulta;
 	}
-	public void setMontoMulta(int montoMulta) {
-		MontoMulta = montoMulta;
+	public void setValorMulta(int valorMulta) {
+		this.valorMulta = valorMulta;
 	}
-	public Usuario getUsuarioID() {
+	public int getUsuarioID() {
 		return usuarioID;
 	}
-	public void setUsuarioID(Usuario usuarioID) {
+	public void setUsuarioID(int usuarioID) {
 		this.usuarioID = usuarioID;
 	}
-	public SolicitudPrestamo getSolicitudID() {
+	public int getSolicitudID() {
 		return solicitudID;
 	}
-	public void setSolicitudID(SolicitudPrestamo solicitudID) {
+	public void setSolicitudID(int solicitudID) {
 		this.solicitudID = solicitudID;
 	}
 	public String getMotivo() {
@@ -38,20 +37,12 @@ public class Sancion {
 	public void setMotivo(String motivo) {
 		Motivo = motivo;
 	}
-	public boolean isPagado() {
-		return Pagado;
-	}
-	public void setPagado(boolean pagado) {
-		Pagado = pagado;
-	}
 	
-	public Sancion(int iD, int montoMulta, Usuario usuarioID, SolicitudPrestamo solicitudID, String motivo,
-			boolean pagado) {
+	public Sancion(int iD, int valorMulta, int usuarioID, int solicitudID, String motivo) {
 		ID = iD;
-		MontoMulta = montoMulta;
+		this.valorMulta = valorMulta;
 		this.usuarioID = usuarioID;
 		this.solicitudID = solicitudID;
 		Motivo = motivo;
-		Pagado = pagado;
 	}
 }

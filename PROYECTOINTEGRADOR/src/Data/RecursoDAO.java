@@ -53,15 +53,11 @@ public class RecursoDAO {
 			stmt.setString(1, recurso.getTipo());
 			stmt.setBoolean(2, recurso.isEstado());
 			stmt.setString(3, recurso.getSoftwareRequerido());
+			stmt.setInt(4, recurso.getID());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public boolean authenticate(int IDRecurso) {
