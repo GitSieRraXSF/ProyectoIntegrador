@@ -9,15 +9,14 @@ import java.util.ArrayList;
 
 import Model.Sancion;
 
-public class SancionDAO implements CRUD_PI<Sancion, String>{
+public class SancionDAO {
 	
 	private Connection connection;
 	
 	public SancionDAO(Connection connection) {
 		this.connection = connection;
 	}
-
-	@Override
+	
 	public void save(Sancion sancion69) {
 		String sql = "INSERT INTO Sancion (IDSancion, IDUsuario, IDSolicitud, valorMulta, Motivo) VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -31,8 +30,7 @@ public class SancionDAO implements CRUD_PI<Sancion, String>{
 			e.printStackTrace();
 		}
 	}
-
-	@Override
+	
 	public ArrayList<Sancion> fetch() {
 		ArrayList<Sancion> sancion2 = new ArrayList<>();
 		String sql = "SELECT * FROM Sancion";
@@ -51,8 +49,7 @@ public class SancionDAO implements CRUD_PI<Sancion, String>{
 		}
 		return null;
 	}
-
-	@Override
+	
 	public void update(Sancion sancion1) {
 		String sql = "UPDATE Sancion SET IDUsuario=?, IDSolictitud=?, valorMulta=?, Motivo=? WHERE IDSancion=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -66,16 +63,28 @@ public class SancionDAO implements CRUD_PI<Sancion, String>{
 			e.printStackTrace();
 		}
 	}
-
-	@Override
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-		
+	
+	public void delete(int IDSancion) {
+		String sql = "DELETE FROM Sancion WHERE IDSancion=?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setLong(1, IDSancion);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
-	@Override
-	public boolean authenticate(String id) {
-		// TODO Auto-generated method stub
+	
+	public boolean authenticate(int IDSancion) {
+		String sql = "SELECT IDSancion FROM Sancion WHERE IDSancion=?";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, IDSancion);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt("IDSancion") == IDSancion;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }
