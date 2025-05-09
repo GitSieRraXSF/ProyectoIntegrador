@@ -2,30 +2,26 @@ package Model;
 
 public class SolicitudPrestamo {
 
-	private int ID;
-	private Usuario usuarioID;
-	private Recurso RecursoID;
+	private int ID, usuarioID, recursoID;
 	private String FechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal;
-	private ReporteDevolucion reportedevolucionID;
 	private boolean Estado;
-	
 	public int getID() {
 		return ID;
 	}
 	public void setID(int iD) {
 		ID = iD;
 	}
-	public Usuario getUsuarioID() {
+	public int getUsuarioID() {
 		return usuarioID;
 	}
-	public void setUsuarioID(Usuario usuarioID) {
+	public void setUsuarioID(int usuarioID) {
 		this.usuarioID = usuarioID;
 	}
-	public Recurso getRecursoID() {
-		return RecursoID;
+	public int getRecursoID() {
+		return recursoID;
 	}
-	public void setRecursoID(Recurso recursoID) {
-		RecursoID = recursoID;
+	public void setRecursoID(int recursoID) {
+		this.recursoID = recursoID;
 	}
 	public String getFechaSolicitud() {
 		return FechaSolicitud;
@@ -51,12 +47,6 @@ public class SolicitudPrestamo {
 	public void setFechaDevolucionReal(String fechaDevolucionReal) {
 		this.fechaDevolucionReal = fechaDevolucionReal;
 	}
-	public ReporteDevolucion getReportedevolucionID() {
-		return reportedevolucionID;
-	}
-	public void setReportedevolucionID(ReporteDevolucion reportedevolucionID) {
-		this.reportedevolucionID = reportedevolucionID;
-	}
 	public boolean isEstado() {
 		return Estado;
 	}
@@ -64,17 +54,15 @@ public class SolicitudPrestamo {
 		Estado = estado;
 	}
 	
-	public SolicitudPrestamo(int iD, Usuario usuarioID, Recurso recursoID, String fechaSolicitud, String fechainicio,
-			String fechafinPrevista, String fechaDevolucionReal, ReporteDevolucion reportedevolucionID,
-			boolean estado) {
+	public SolicitudPrestamo(int iD, int usuarioID, int recursoID, String fechaSolicitud, String fechainicio,
+			String fechafinPrevista, String fechaDevolucionReal, boolean estado) {
 		ID = iD;
 		this.usuarioID = usuarioID;
-		RecursoID = recursoID;
+		this.recursoID = recursoID;
 		FechaSolicitud = fechaSolicitud;
 		this.fechainicio = fechainicio;
 		this.fechafinPrevista = fechafinPrevista;
 		this.fechaDevolucionReal = fechaDevolucionReal;
-		this.reportedevolucionID = reportedevolucionID;
 		Estado = estado;
 	}
 }

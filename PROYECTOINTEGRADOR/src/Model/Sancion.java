@@ -5,7 +5,7 @@ public class Sancion {
 	private int ID, MontoMulta;
 	private Usuario usuarioID;
 	private SolicitudPrestamo solicitudID;
-	private String Motivo, FechaAplicacion;
+	private String Motivo;
 	private boolean Pagado;
 	
 	public int getID() {
@@ -38,12 +38,6 @@ public class Sancion {
 	public void setMotivo(String motivo) {
 		Motivo = motivo;
 	}
-	public String getFechaAplicacion() {
-		return FechaAplicacion;
-	}
-	public void setFechaAplicacion(String fechaAplicacion) {
-		FechaAplicacion = fechaAplicacion;
-	}
 	public boolean isPagado() {
 		return Pagado;
 	}
@@ -52,13 +46,12 @@ public class Sancion {
 	}
 	
 	public Sancion(int iD, int montoMulta, Usuario usuarioID, SolicitudPrestamo solicitudID, String motivo,
-			String fechaAplicacion, boolean pagado) {
+			boolean pagado) {
 		ID = iD;
 		MontoMulta = montoMulta;
 		this.usuarioID = usuarioID;
 		this.solicitudID = solicitudID;
 		Motivo = motivo;
-		FechaAplicacion = fechaAplicacion;
 		Pagado = pagado;
 	}
 }

@@ -3,8 +3,8 @@ package Model;
 public class ReporteDevolucion {
 
 	private int ID;
-	private SolicitudPrestamo sulicitudID;
-	private Supervisor supervisorID;
+	private int solicitudID;
+	private int supervisorID;
 	private String FechaVerificacion, Observaciones;
 	private boolean estadoRecurso;
 	
@@ -14,16 +14,16 @@ public class ReporteDevolucion {
 	public void setID(int iD) {
 		ID = iD;
 	}
-	public SolicitudPrestamo getSulicitudID() {
-		return sulicitudID;
+	public int getSolicitudID() {
+		return solicitudID;
 	}
-	public void setSulicitudID(SolicitudPrestamo sulicitudID) {
-		this.sulicitudID = sulicitudID;
+	public void setSolicitudID(int solicitudID) {
+		this.solicitudID = solicitudID;
 	}
-	public Supervisor getSupervisorID() {
+	public int getSupervisorID() {
 		return supervisorID;
 	}
-	public void setSupervisorID(Supervisor supervisorID) {
+	public void setSupervisorID(int supervisorID) {
 		this.supervisorID = supervisorID;
 	}
 	public String getFechaVerificacion() {
@@ -45,10 +45,10 @@ public class ReporteDevolucion {
 		this.estadoRecurso = estadoRecurso;
 	}
 	
-	public ReporteDevolucion(int iD, SolicitudPrestamo sulicitudID, Supervisor supervisorID, String fechaVerificacion,
-			String observaciones, boolean estadoRecurso) {
+	public ReporteDevolucion(int iD, int solicitudID, int supervisorID, String fechaVerificacion, String observaciones,
+			boolean estadoRecurso) {
 		ID = iD;
-		this.sulicitudID = sulicitudID;
+		this.solicitudID = solicitudID;
 		this.supervisorID = supervisorID;
 		FechaVerificacion = fechaVerificacion;
 		Observaciones = observaciones;

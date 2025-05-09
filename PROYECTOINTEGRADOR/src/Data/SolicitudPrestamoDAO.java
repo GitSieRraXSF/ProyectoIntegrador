@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-
 import Model.SolicitudPrestamo;
 
 public class SolicitudPrestamoDAO implements CRUD_PI<SolicitudPrestamo, String> {
@@ -17,14 +17,43 @@ public class SolicitudPrestamoDAO implements CRUD_PI<SolicitudPrestamo, String> 
 	}
 
 	@Override
-	public void save(SolicitudPrestamo entity) {
-		// TODO Auto-generated method stub
-		
+	public void save(SolicitudPrestamo solicitud) {
+		String sql = "INSERT INTO SolicitudPrestamo (IDSolicitud, IDUsuario, IDRecurso, fechaSolicitud, fechaDevolucionREAL, HoraInicio, HoraFin, Estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+			stmt.setInt(1, solicitud.getID());
+			stmt.setInt(2, solicitud.getUsuarioID());
+			stmt.setInt(3, solicitud.getRecursoID());
+			stmt.setString(4, solicitud.getFechaSolicitud());
+			stmt.setString(5, solicitud.getFechaDevolucionReal());
+			stmt.setString(6, solicitud.getFechainicio());
+			stmt.setString(7, solicitud.getFechafinPrevista());
+			stmt.setBoolean(8, solicitud.isEstado());
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public ArrayList<SolicitudPrestamo> fetch() {
-		// TODO Auto-generated method stub
+		ArrayList<SolicitudPrestamo> solicitudes = new ArrayList<>();
+		String sql = "SELECT * FROM SolicitudPrestamo";
+		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+			while (rs.next()) {
+				int iD = rs.getInt("iD");
+				int usuarioID = rs.getInt("usuarioID");
+				int recursoID = rs.getInt("recursoID");
+				String fechaSolicitud = rs.getString("fechaSolicitud");
+				String fechainicio = rs.getString("fechainicio");
+				String fechafinPrevista = rs.getString("fechafinPrevista");
+				String fechaDevolucionReal = rs.getString("fechaDevolucionReal");
+				boolean estado = rs.getBoolean("Estado");
+				SolicitudPrestamo solicitud = new SolicitudPrestamo(iD, usuarioID, recursoID, fechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
+				solicitudes.add(solicitud);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

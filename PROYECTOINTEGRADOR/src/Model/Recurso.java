@@ -3,7 +3,7 @@ package Model;
 public class Recurso {
 
 	private int ID;
-	private String Tipo, ubicacion, softwareRequerido;
+	private String Tipo, softwareRequerido;
 	private boolean estado;
 	public int getID() {
 		return ID;
@@ -16,12 +16,6 @@ public class Recurso {
 	}
 	public void setTipo(String tipo) {
 		Tipo = tipo;
-	}
-	public String getUbicacion() {
-		return ubicacion;
-	}
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
 	}
 	public String getSoftwareRequerido() {
 		return softwareRequerido;
@@ -36,10 +30,9 @@ public class Recurso {
 		this.estado = estado;
 	}
 	
-	public Recurso(int iD, String tipo, String ubicacion, String softwareRequerido, boolean estado) {
+	public Recurso(int iD, String tipo, String softwareRequerido, boolean estado) {
 		ID = iD;
 		Tipo = tipo;
-		this.ubicacion = ubicacion;
 		this.softwareRequerido = softwareRequerido;
 		this.estado = estado;
 	}
