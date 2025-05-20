@@ -56,7 +56,7 @@ public class SolicitudPrestamoDAO {
 	}
 	
 	public void update(SolicitudPrestamo solicitud) {
-		String sql = "UPDATE solicitud SET IDSolicitud=?, IDRecurso=?, fechaSolicitud=?, fechaDevolucionREAL=?, HoraInicio=?, HoraFin=?, Estado=? WHERE IDUsuario=?";
+		String sql = "UPDATE Solicitud_Prestamo SET IDSolicitud=?, IDRecurso=?, fechaSolicitud=?, fechaDevolucionREAL=?, HoraInicio=?, HoraFin=?, Estado=? WHERE IDUsuario=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setInt(1, solicitud.getID());
 			stmt.setInt(2, solicitud.getRecursoID());
