@@ -2,6 +2,7 @@ package Controller;
 
 import java.sql.Connection;
 import Data.DBConnectionFactory;
+import Data.RecursoDAO;
 import Data.SolicitudPrestamoDAO;
 import Model.SolicitudPrestamo;
 import Model.Recurso;
@@ -35,6 +36,7 @@ public class SolicitudController {
     
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private SolicitudPrestamoDAO SolicitudDAO = new SolicitudPrestamoDAO(connection);
+    private RecursoDAO recursoDAO = new RecursoDAO(connection);
     
     @FXML
     public void initialize() {
