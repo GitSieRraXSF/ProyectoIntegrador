@@ -5,6 +5,7 @@ public class SolicitudPrestamo {
 	private int ID, usuarioID, recursoID;
 	private String FechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal;
 	private boolean Estado;
+	
 	public int getID() {
 		return ID;
 	}

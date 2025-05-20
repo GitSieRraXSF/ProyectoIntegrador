@@ -24,5 +24,4 @@ public class EncuestaController {
     void enviarEncuesta(ActionEvent event) {
 
     }
-
 }
