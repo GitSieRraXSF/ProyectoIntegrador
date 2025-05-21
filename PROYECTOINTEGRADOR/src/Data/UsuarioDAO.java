@@ -16,12 +16,11 @@ public class UsuarioDAO{
 	}
 	
 	public void save(Usuario usuario) {
-		String sql = "INSERT INTO Usuario (IDUsuario, Nombre, Correo, Contraseña) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Usuario (Nombre, Correo, Contraseña) VALUES (?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, usuario.getID());
-			stmt.setString(2, usuario.getNombre());
-			stmt.setString(3, usuario.getEmail());
-			stmt.setString(4, usuario.getContraseña());
+			stmt.setString(1, usuario.getNombre());
+			stmt.setString(2, usuario.getEmail());
+			stmt.setString(3, usuario.getContraseña());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -20,9 +20,9 @@ public class Docente extends Usuario {
 		this.especiabilidad = especiabilidad;
 	}
 
-	public Docente(int iD, String nombre, String email, String contraseña, String sancionesPendientes,
+	public Docente(String nombre, String email, String contraseña, String sancionesPendientes,
 			String asignatura, String especiabilidad) {
-		super(iD, nombre, email, contraseña, sancionesPendientes);
+		super(nombre, email, contraseña, sancionesPendientes);
 		Asignatura = asignatura;
 		this.especiabilidad = especiabilidad;
 	}

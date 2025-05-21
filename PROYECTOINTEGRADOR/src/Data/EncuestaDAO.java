@@ -17,14 +17,11 @@ public class EncuestaDAO {
 	}
 
 	public void save(Encuesta encuesta1) {
-		String sql = "INSERT INTO Encuesta (IDEncuesta, IDSolicitud, IDUsuario, Funcionalidad, Calidad, Infraestructura) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Encuesta (Funcionalidad, Calidad, Infraestructura) VALUES (?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, encuesta1.getID());
-			stmt.setInt(2, encuesta1.getSolicitudID());
-			stmt.setInt(3, encuesta1.getUsuarioID());
-			stmt.setString(4, encuesta1.getFuncionalidad());
-			stmt.setString(5, encuesta1.getCalidad());
-			stmt.setString(6, encuesta1.getInfraestructura());
+			stmt.setString(1, encuesta1.getFuncionalidad());
+			stmt.setString(2, encuesta1.getCalidad());
+			stmt.setString(3, encuesta1.getInfraestructura());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -36,13 +33,10 @@ public class EncuestaDAO {
 		String sql = "SELECT * FROM Encuesta";
 		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				int iD = rs.getInt("IDEncuesta");
-				int solicitudID = rs.getInt("IDSolicitud");
-				int usuarioID = rs.getInt("IDUsuario");
 				String funcionalidad = rs.getString("Funcionalidad");
 				String calidad = rs.getString("Calidad");
 				String infraestructura = rs.getString("Infraestructura");
-				Encuesta encuesta = new Encuesta(iD, solicitudID, usuarioID, funcionalidad, calidad, infraestructura);
+				Encuesta encuesta = new Encuesta(funcionalidad, calidad, infraestructura);
 				encuestas1.add(encuesta);
 			}
 		} catch (SQLException e) {

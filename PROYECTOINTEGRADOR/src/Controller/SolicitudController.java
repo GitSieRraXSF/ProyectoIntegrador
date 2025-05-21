@@ -1,57 +1,58 @@
 package Controller;
 
 import java.sql.Connection;
+
+import Application.Main;
 import Data.DBConnectionFactory;
-import Data.RecursoDAO;
 import Data.SolicitudPrestamoDAO;
 import Model.SolicitudPrestamo;
-import Model.Recurso;
-import Model.Usuario;
 import Model.Usersession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 public class SolicitudController {
+
+	@FXML
+    private CheckBox CheckEstado;
 
     @FXML
     private Button btnGuardar;
 
     @FXML
-    private ComboBox<String> cbRecurso;
+    private TextField txtFechaSolicitante;
 
     @FXML
-    private ComboBox<String> cbTipoRecurso;
+    private TextField txtfechaDevo;
 
     @FXML
-    private TextField txtFechasoli;
+    private TextField txthoraInico;
 
     @FXML
-    private TextField txtDuracion;
-
-    @FXML
-    private TextField txtSolicitante;
+    private TextField txthorafin;
     
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private SolicitudPrestamoDAO SolicitudDAO = new SolicitudPrestamoDAO(connection);
-    private RecursoDAO recursoDAO = new RecursoDAO(connection);
     
     @FXML
-    public void initialize() {
-    	cbRecurso.getItems().addAll("admin", "student", "teacher");
-    }
-
-    @FXML
     void guardarSolicitud(ActionEvent event) {
-    	int ID = Integer.parseInt(txtSolicitante.getText());
-    	String recursoespecifico = cbRecurso.getSelectionModel().getSelectedItem();
-    	String tiporecurso = cbRecurso.getSelectionModel().getSelectedItem();
-    	String fechasolicitud = txtFechasoli.getText();
-    	String horas = txtDuracion.getText();
-    	if (!SolicitudDAO.authenticate(ID) && Usersession.getInstance().getRole().equals("Docente")) {
-    		
+    	String fechaSolicitud = txtFechaSolicitante.getText();
+    	String fechaDevolucion = txtfechaDevo.getText();
+    	String horainicio = txthoraInico.getText();
+    	String horafin = txthorafin.getText();
+    	boolean estado = CheckEstado.isSelected();
+    	if (txtFechaSolicitante.getText().isBlank() || txtfechaDevo.getText().isBlank() || txthoraInico.getText().isBlank() || txthorafin.getText().isBlank()) {
+	    	if (!SolicitudDAO.authenticate(fechaSolicitud) && Usersession.getInstance().getRole().equals("Docente")) {
+	    		SolicitudPrestamo solicitud = new SolicitudPrestamo(fechaSolicitud, horainicio, horafin, fechaDevolucion, estado);
+	    		SolicitudDAO.save(solicitud);
+	    	} else {
+	    		Main.showAlert("Error!...", "Solicitud Invalidad ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
+	    	}
+    	} else {
+    		Main.showAlert("Error!...", "Informacion invalida!!", "Todos los campos (5 campos) deben esta llenos para registrarlo.", Alert.AlertType.NONE);
     	}
     }
 }

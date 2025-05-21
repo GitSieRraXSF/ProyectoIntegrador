@@ -12,9 +12,9 @@ public class Administrador extends Usuario {
 		NivelAcceso = nivelAcceso;
 	}
 
-	public Administrador(int iD, String nombre, String email, String contraseña, String sancionesPendientes,
+	public Administrador(String nombre, String email, String contraseña, String sancionesPendientes,
 			String nivelAcceso) {
-		super(iD, nombre, email, contraseña, sancionesPendientes);
+		super(nombre, email, contraseña, sancionesPendientes);
 		NivelAcceso = nivelAcceso;
 	}
 }

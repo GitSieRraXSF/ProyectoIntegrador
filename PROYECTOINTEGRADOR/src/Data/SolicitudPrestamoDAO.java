@@ -17,16 +17,13 @@ public class SolicitudPrestamoDAO {
 	}
 	
 	public void save(SolicitudPrestamo solicitud) {
-		String sql = "INSERT INTO Solicitud_Prestamo (IDSolicitud, IDUsuario, IDRecurso, fechaSolicitud, fechaDevolucionREAL, HoraInicio, HoraFin, Estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Solicitud_Prestamo (fechaSolicitud, fechaDevolucionREAL, HoraInicio, HoraFin, Estado) VALUES (?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, solicitud.getID());
-			stmt.setInt(2, solicitud.getUsuarioID());
-			stmt.setInt(3, solicitud.getRecursoID());
-			stmt.setString(4, solicitud.getFechaSolicitud());
-			stmt.setString(5, solicitud.getFechaDevolucionReal());
-			stmt.setString(6, solicitud.getFechainicio());
-			stmt.setString(7, solicitud.getFechafinPrevista());
-			stmt.setBoolean(8, solicitud.isEstado());
+			stmt.setString(1, solicitud.getFechaSolicitud());
+			stmt.setString(2, solicitud.getFechaDevolucionReal());
+			stmt.setString(3, solicitud.getFechainicio());
+			stmt.setString(4, solicitud.getFechafinPrevista());
+			stmt.setBoolean(5, solicitud.isEstado());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -38,15 +35,12 @@ public class SolicitudPrestamoDAO {
 		String sql = "SELECT * FROM SolicitudPrestamo";
 		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				int iD = rs.getInt("IDSolicitud");
-				int usuarioID = rs.getInt("IDUsuario");
-				int recursoID = rs.getInt("IDRecurso");
 				String fechaSolicitud = rs.getString("fechaSolicitud");
 				String fechainicio = rs.getString("HoraInicio");
 				String fechafinPrevista = rs.getString("HoraFin");
 				String fechaDevolucionReal = rs.getString("fechaDevolucionReal");
 				boolean estado = rs.getBoolean("Estado");
-				SolicitudPrestamo solicitud = new SolicitudPrestamo(iD, usuarioID, recursoID, fechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
+				SolicitudPrestamo solicitud = new SolicitudPrestamo(fechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
 				solicitudes.add(solicitud);
 			}
 		} catch (SQLException e) {
@@ -56,16 +50,13 @@ public class SolicitudPrestamoDAO {
 	}
 	
 	public void update(SolicitudPrestamo solicitud) {
-		String sql = "UPDATE Solicitud_Prestamo SET IDSolicitud=?, IDRecurso=?, fechaSolicitud=?, fechaDevolucionREAL=?, HoraInicio=?, HoraFin=?, Estado=? WHERE IDUsuario=?";
+		String sql = "UPDATE Solicitud_Prestamo SET fechaSolicitud=?, fechaDevolucionREAL=?, HoraInicio=?, HoraFin=?, Estado=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, solicitud.getID());
-			stmt.setInt(2, solicitud.getRecursoID());
-			stmt.setString(3, solicitud.getFechaSolicitud());
-			stmt.setString(4, solicitud.getFechaDevolucionReal());
-			stmt.setString(5, solicitud.getFechainicio());
-			stmt.setString(6, solicitud.getFechafinPrevista());
-			stmt.setBoolean(7, solicitud.isEstado());
-			stmt.setInt(8, solicitud.getUsuarioID());
+			stmt.setString(1, solicitud.getFechaSolicitud());
+			stmt.setString(2, solicitud.getFechaDevolucionReal());
+			stmt.setString(3, solicitud.getFechainicio());
+			stmt.setString(4, solicitud.getFechafinPrevista());
+			stmt.setBoolean(5, solicitud.isEstado());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,13 +73,13 @@ public class SolicitudPrestamoDAO {
 		}
 	}
 	
-	public boolean authenticate(int IDSolicitud) {
-		String sql = "SELECT IDSolicitud FROM Solicitud WHERE IDSolicitud=?";
+	public boolean authenticate(String fecha) {
+		String sql = "SELECT fechaSolicitud FROM Solicitud WHERE fechaSolicitud=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, IDSolicitud);
+			stmt.setString(1, fecha);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
-				return rs.getInt("IDSolicitud") == IDSolicitud;
+				return rs.getString("fechasolicitud").equals(fecha);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

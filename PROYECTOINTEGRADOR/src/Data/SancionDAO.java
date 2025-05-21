@@ -18,13 +18,10 @@ public class SancionDAO {
 	}
 	
 	public void save(Sancion sancion69) {
-		String sql = "INSERT INTO Sancion (IDSancion, IDUsuario, IDSolicitud, valorMulta, Motivo) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Sancion (valorMulta, Motivo) VALUES (?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, sancion69.getID());
-			stmt.setInt(2, sancion69.getUsuarioID());
-			stmt.setInt(3, sancion69.getSolicitudID());
-			stmt.setInt(4, sancion69.getValorMulta());
-			stmt.setString(5, sancion69.getMotivo());
+			stmt.setInt(1, sancion69.getValorMulta());
+			stmt.setString(2, sancion69.getMotivo());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -36,12 +33,9 @@ public class SancionDAO {
 		String sql = "SELECT * FROM Sancion";
 		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				int iD = rs.getInt("IDSancion");
-				int idusuario = rs.getInt("IDUsuario");
-				int idsolicitud = rs.getInt("IDSolicitud");
 				int valormulta = rs.getInt("IDvalorMulta");
 				String motivo = rs.getString("Motivo");
-				Sancion sancion6 = new Sancion(iD, idusuario, idsolicitud, valormulta, motivo);
+				Sancion sancion6 = new Sancion(valormulta, motivo);
 				sancion2.add(sancion6);
 			}
 		} catch (SQLException e) {
@@ -51,13 +45,10 @@ public class SancionDAO {
 	}
 	
 	public void update(Sancion sancion1) {
-		String sql = "UPDATE Sancion SET IDUsuario=?, IDSolictitud=?, valorMulta=?, Motivo=? WHERE IDSancion=?";
+		String sql = "UPDATE Sancion SET valorMulta=?, Motivo=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, sancion1.getUsuarioID());
-			stmt.setInt(2, sancion1.getSolicitudID());
-			stmt.setInt(3, sancion1.getValorMulta());
-			stmt.setString(4, sancion1.getMotivo());
-			stmt.setInt(5, sancion1.getID());
+			stmt.setInt(1, sancion1.getValorMulta());
+			stmt.setString(2, sancion1.getMotivo());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -12,9 +12,9 @@ public class AreaAdministrativa extends Usuario {
 		Area = area;
 	}
 
-	public AreaAdministrativa(int iD, String nombre, String email, String contraseña, String sancionesPendientes,
+	public AreaAdministrativa(String nombre, String email, String contraseña, String sancionesPendientes,
 			String area) {
-		super(iD, nombre, email, contraseña, sancionesPendientes);
+		super(nombre, email, contraseña, sancionesPendientes);
 		Area = area;
 	}
 }

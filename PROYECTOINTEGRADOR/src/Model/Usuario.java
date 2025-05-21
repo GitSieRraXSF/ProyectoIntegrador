@@ -2,14 +2,7 @@ package Model;
 
 public class Usuario {
 
-	private int ID;
 	private String Nombre, email, contraseña, SancionesPendientes;
-	public int getID() {
-		return ID;
-	}
-	public void setID(int iD) {
-		ID = iD;
-	}
 	public String getNombre() {
 		return Nombre;
 	}
@@ -35,8 +28,7 @@ public class Usuario {
 		SancionesPendientes = sancionesPendientes;
 	}
 	
-	public Usuario(int iD, String nombre, String email, String contraseña, String sancionesPendientes) {
-		ID = iD;
+	public Usuario(String nombre, String email, String contraseña, String sancionesPendientes) {
 		Nombre = nombre;
 		this.email = email;
 		this.contraseña = contraseña;

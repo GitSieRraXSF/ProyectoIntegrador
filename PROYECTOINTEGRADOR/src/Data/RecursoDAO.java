@@ -17,12 +17,11 @@ public class RecursoDAO {
 	}
 	
 	public void save(Recurso recurso) {
-		String sql = "INSERT INTO Recurso (IDRecurso, Tipo, Estado, SoftwareRequerido) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Recurso (Tipo, Estado, SoftwareRequerido) VALUES (?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, recurso.getID());
-			stmt.setString(2, recurso.getTipo());
-			stmt.setBoolean(3, recurso.isEstado());
-			stmt.setString(4, recurso.getSoftwareRequerido());
+			stmt.setString(1, recurso.getTipo());
+			stmt.setBoolean(2, recurso.isEstado());
+			stmt.setString(3, recurso.getSoftwareRequerido());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -34,11 +33,10 @@ public class RecursoDAO {
 		String sql = "SELECT * FROM Recurso";
 		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				int iD = rs.getInt("IDRecurso");
 				String tipo = rs.getString("Tipo");
 				boolean estado = rs.getBoolean("Estado");
 				String softwarerequerido = rs.getString("SoftwareRequerido");
-				Recurso recursos = new Recurso(iD, tipo, softwarerequerido, estado);
+				Recurso recursos = new Recurso(tipo, softwarerequerido, estado);
 				recursos1.add(recursos);
 			}
 		} catch (SQLException e) {
@@ -48,12 +46,11 @@ public class RecursoDAO {
 	}
 	
 	public void update(Recurso recurso) {
-		String sql = "UPDATE Recurso SET Tipo=?, Estado=?, SoftwareRequerido=? WHERE IDRecurso=?";
+		String sql = "UPDATE Recurso SET Tipo=?, Estado=?, SoftwareRequerido=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, recurso.getTipo());
 			stmt.setBoolean(2, recurso.isEstado());
 			stmt.setString(3, recurso.getSoftwareRequerido());
-			stmt.setInt(4, recurso.getID());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
