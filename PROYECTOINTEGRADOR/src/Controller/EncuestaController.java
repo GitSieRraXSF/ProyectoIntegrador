@@ -40,7 +40,7 @@ public class EncuestaController {
     		Encuesta encuesta = new Encuesta(funcion, Calidad, InfraEstruc);
     		encuestaDAO.save(encuesta);
     	} else {
-    		Main.showAlert("Error!...", "Encuesta Invalida ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
+    		Main.showAlert("Error!...", "Encuesta Invalida ó Rol Invalido!!", "No se ha podido registrar la encuesta dada.", Alert.AlertType.ERROR);
     	}
     }
 }
