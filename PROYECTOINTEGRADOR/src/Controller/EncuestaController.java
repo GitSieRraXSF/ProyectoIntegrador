@@ -1,39 +1,46 @@
 package Controller;
 
 import java.sql.Connection;
+
+import Application.Main;
 import Data.DBConnectionFactory;
 import Data.EncuestaDAO;
+import Model.Encuesta;
 import Model.Usersession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class EncuestaController {
 
-    @FXML
+	@FXML
     private Button btnEnviarEncuesta;
 
     @FXML
-    private CheckBox cbPregunta1;
+    private TextArea txtAFuncionalidad;
 
     @FXML
-    private CheckBox cbPregunta2;
+    private TextArea txtAInfraestructura;
 
     @FXML
-    private TextArea txtComentarios;
+    private TextField txtCalidad;
     
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private EncuestaDAO encuestaDAO = new EncuestaDAO(connection);
 
     @FXML
     void enviarEncuesta(ActionEvent event) {
-    	boolean Pregunta1 = Boolean.parseBoolean(cbPregunta1.getTypeSelector());
-    	boolean Pregunta2 = Boolean.parseBoolean(cbPregunta2.getTypeSelector());
-    	String Comentario = txtComentarios.getText();
-    	if (Usersession.getInstance().getRole().equals("Docente")) {
-    		
+    	String funcion = txtAFuncionalidad.getText();
+    	String Calidad = txtCalidad.getText();
+    	String InfraEstruc = txtAInfraestructura.getText();
+    	if ((txtAFuncionalidad.getText().isBlank() || txtCalidad.getText().isBlank() || txtAInfraestructura.getText().isBlank()) && Usersession.getInstance().getRole().equals("Docente")) {
+    		Encuesta encuesta = new Encuesta(funcion, Calidad, InfraEstruc);
+    		encuestaDAO.save(encuesta);
+    	} else {
+    		Main.showAlert("Error!...", "Encuesta Invalida ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
     	}
     }
 }

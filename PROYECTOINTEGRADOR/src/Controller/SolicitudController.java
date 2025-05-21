@@ -1,7 +1,6 @@
 package Controller;
 
 import java.sql.Connection;
-
 import Application.Main;
 import Data.DBConnectionFactory;
 import Data.SolicitudPrestamoDAO;
@@ -49,7 +48,7 @@ public class SolicitudController {
 	    		SolicitudPrestamo solicitud = new SolicitudPrestamo(fechaSolicitud, horainicio, horafin, fechaDevolucion, estado);
 	    		SolicitudDAO.save(solicitud);
 	    	} else {
-	    		Main.showAlert("Error!...", "Solicitud Invalidad ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
+	    		Main.showAlert("Error!...", "Solicitud Invalida ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
 	    	}
     	} else {
     		Main.showAlert("Error!...", "Informacion invalida!!", "Todos los campos (5 campos) deben esta llenos para registrarlo.", Alert.AlertType.NONE);
