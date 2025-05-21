@@ -6,9 +6,9 @@ public class DBConnectionFactory {
 		switch (role.toLowerCase()) {
 		case "admin":
 			return AdminitradorConnection.getInstance();
-		case "student":
-			return DocenteConnection.getInstance();
 		case "teacher":
+			return DocenteConnection.getInstance();
+		case "supervisor":
 			return SupervisorConnection.getInstance();
 		default:
 			throw new IllegalArgumentException("Rol no válido: " + role);
