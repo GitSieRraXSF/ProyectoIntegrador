@@ -60,5 +60,6 @@ public class ResumenSolicitudesController {
     @FXML
     void actualizarResumen(ActionEvent event) {
     	initialize();
+    	//mostrar
     }
 }
