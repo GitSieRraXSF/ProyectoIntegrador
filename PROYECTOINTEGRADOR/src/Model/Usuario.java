@@ -2,7 +2,8 @@ package Model;
 
 public class Usuario {
 
-	private String Nombre, email, contraseña, SancionesPendientes;
+	private String Nombre, email, contraseña, role;
+	
 	public String getNombre() {
 		return Nombre;
 	}
@@ -21,17 +22,17 @@ public class Usuario {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
-	public String getSancionesPendientes() {
-		return SancionesPendientes;
+	public String getRole() {
+		return role;
 	}
-	public void setSancionesPendientes(String sancionesPendientes) {
-		SancionesPendientes = sancionesPendientes;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
-	public Usuario(String nombre, String email, String contraseña, String sancionesPendientes) {
+	public Usuario(String nombre, String email, String contraseña, String role) {
 		Nombre = nombre;
 		this.email = email;
 		this.contraseña = contraseña;
-		SancionesPendientes = sancionesPendientes;
+		this.role = role;
 	}
 }

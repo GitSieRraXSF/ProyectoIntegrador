@@ -12,9 +12,9 @@ public class Supervisor extends Usuario {
 		AreasResponsabilidad = areasResponsabilidad;
 	}
 
-	public Supervisor(String nombre, String email, String contraseña, String sancionesPendientes,
+	public Supervisor(String nombre, String email, String contraseña, String role,
 			String areasResponsabilidad) {
-		super(nombre, email, contraseña, sancionesPendientes);
+		super(nombre, email, contraseña, role);
 		AreasResponsabilidad = areasResponsabilidad;
 	}
 }
