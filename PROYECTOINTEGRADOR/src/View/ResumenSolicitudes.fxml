@@ -19,11 +19,11 @@
    <center>
       <TableView fx:id="tableSolicitudes" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colIdSolicitud" prefWidth="109.0" text="ID Solicitud" />
-          <TableColumn fx:id="colSolicitante" prefWidth="186.0" text="Solicitante" />
-            <TableColumn fx:id="colRecurso" prefWidth="158.0" text="Recurso" />
-            <TableColumn fx:id="colFechaUso" prefWidth="160.0" text="Fecha de Uso" />
-            <TableColumn fx:id="colEstado" prefWidth="121.0" text="Estado" />
+          <TableColumn fx:id="colIdfechaSoli" prefWidth="137.0" text="FechaSolicitud" />
+          <TableColumn fx:id="colfechainicio" prefWidth="146.0" text="FechaInicio" />
+            <TableColumn fx:id="colfechafinprevista" prefWidth="164.0" text="FechaFinPrevista" />
+            <TableColumn fx:id="colfechaDevo" prefWidth="188.0" text="FechaDevolucion" />
+            <TableColumn fx:id="colEstado" prefWidth="99.0" text="Estado" />
         </columns>
       </TableView>
    </center>
@@ -31,6 +31,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4a6fa5; -fx-padding: 10px;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnActualizarResumen" mnemonicParsing="false" onAction="#actualizarResumen" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Actualizar Resumen" />
+            <Button fx:id="CATemplate" mnemonicParsing="false" onAction="#SubirTemplate" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Subir Datos" />
          </children>
       </HBox>
    </bottom>
