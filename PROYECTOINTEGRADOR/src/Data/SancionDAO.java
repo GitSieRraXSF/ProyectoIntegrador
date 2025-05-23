@@ -1,13 +1,15 @@
 package Data;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-
+import Application.Main;
 import Model.Sancion;
+import javafx.scene.control.Alert;
+import oracle.jdbc.internal.OracleTypes;
 
 public class SancionDAO {
 	
@@ -18,40 +20,47 @@ public class SancionDAO {
 	}
 	
 	public void save(Sancion sancion69) {
-		String sql = "INSERT INTO Sancion (valorMulta, Motivo) VALUES (?, ?)";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		String sql = "{call InsertSancion(?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setInt(1, sancion69.getValorMulta());
 			stmt.setString(2, sancion69.getMotivo());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
 	public ArrayList<Sancion> fetch() {
-		ArrayList<Sancion> sancion2 = new ArrayList<>();
-		String sql = "SELECT * FROM Sancion";
-		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-			while (rs.next()) {
-				int valormulta = rs.getInt("IDvalorMulta");
-				String motivo = rs.getString("Motivo");
-				Sancion sancion6 = new Sancion(valormulta, motivo);
-				sancion2.add(sancion6);
+		ArrayList<Sancion> sanciones = new ArrayList<>();
+		String sql = "{? = call FetchUsuario()}";
+		try (CallableStatement cs = connection.prepareCall(sql)) {
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			cs.execute();
+			try (ResultSet rs = (ResultSet) cs.getObject(1)){
+				while (rs.next()) {
+					int valorMulta = rs.getInt("valorMulta");
+					String motivo = rs.getString("Email");
+					Sancion user = new Sancion(valorMulta, motivo);
+					sanciones.add(user);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
-		return null;
+		return sanciones;
 	}
 	
 	public void update(Sancion sancion1) {
-		String sql = "UPDATE Sancion SET valorMulta=?, Motivo=?";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		String sql = "{call = UpdateSolicitud(?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setInt(1, sancion1.getValorMulta());
 			stmt.setString(2, sancion1.getMotivo());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
@@ -62,6 +71,7 @@ public class SancionDAO {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	

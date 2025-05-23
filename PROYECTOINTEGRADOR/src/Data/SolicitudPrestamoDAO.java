@@ -45,7 +45,7 @@ public class SolicitudPrestamoDAO {
 					String fechainicio = rs.getString("fechainicio");
 					String fechafinPrevista = rs.getString("fechafinPrevista");
 					String fechaDevolucionReal = rs.getString("fechaDevolucionReal");
-					boolean estado = rs.getBoolean(0);
+					boolean estado = rs.getBoolean("Estado");
 					SolicitudPrestamo Solicitud = new SolicitudPrestamo(FechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
 					solicitudes.add(Solicitud);
 				}
