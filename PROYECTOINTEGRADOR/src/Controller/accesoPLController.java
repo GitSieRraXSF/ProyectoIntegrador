@@ -65,6 +65,7 @@ public class accesoPLController {
 			} else {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
 			}
+			break;
     	}
     }
 }
