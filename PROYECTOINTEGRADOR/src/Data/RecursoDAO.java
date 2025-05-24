@@ -17,16 +17,16 @@ public class RecursoDAO {
 	}
 	
 	public void save(Recurso recurso) {
-		String sql = "INSERT INTO Recurso (Tipo, Estado, SoftwareRequerido) VALUES (?, ?, ?, ?)";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setString(1, recurso.getTipo());
-			stmt.setBoolean(2, recurso.isEstado());
-			stmt.setString(3, recurso.getSoftwareRequerido());
-			stmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+	 String sql = "INSERT INTO Recurso (tipo, softwareRequerido, estado) VALUES (?, ?, ?)";
+	 try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+	            stmt.setString(1, recurso.getTipo());
+		    stmt.setBoolean(2, recurso.isEstado());
+		    stmt.setString(3, recurso.getSoftwareRequerido());
+		    stmt.executeUpdate(); 
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	
 	public ArrayList<Recurso> fetch() {
 		ArrayList<Recurso> recursos1 = new ArrayList<>();
@@ -42,16 +42,16 @@ public class RecursoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return recursos1;
 	}
 	
 	public void update(Recurso recurso) {
 		String sql = "UPDATE Recurso SET Tipo=?, Estado=?, SoftwareRequerido=?";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, recurso.getTipo());
-			stmt.setBoolean(2, recurso.isEstado());
-			stmt.setString(3, recurso.getSoftwareRequerido());
-			stmt.executeUpdate();
+		        stmt.setBoolean(2, recurso.isEstado());
+		        stmt.setString(3, recurso.getSoftwareRequerido());
+		        stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
