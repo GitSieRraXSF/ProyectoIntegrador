@@ -50,7 +50,7 @@ public class ApacheProyect {
 				Cell cellFechaInicio = fila.getCell(1);
 				Cell cellFechaFinPrevista = fila.getCell(2);
 				Cell cellFechaDevolucion = fila.getCell(3);
-				Cell cellEstado = fila.getCell(3);
+				Cell cellEstado = fila.getCell(4);
 				if (cellFechaSolicitud == null || cellFechaInicio == null || cellFechaFinPrevista == null || cellFechaDevolucion == null || cellEstado == null) continue;
 				String FechaSolicitud = cellFechaSolicitud.getStringCellValue();
 				String FechaInicio = cellFechaInicio.getStringCellValue();
