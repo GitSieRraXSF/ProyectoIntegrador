@@ -58,7 +58,7 @@ public class accesoPLController {
 			}
 			break;
     	case "supervisor":
-    		connection = DBConnectionFactory.getConnectionByRole("teacher").getConnection();
+    		connection = DBConnectionFactory.getConnectionByRole("supervisor").getConnection();
 			usuarioDAO = new UsuarioDAO(connection);
 			if (usuarioDAO.authenticate(txtNombre.getText(), txtEmail.getText(), txtContraseña.getText(), "supervisor")) {
 				Main.loadView("/view/ResumenSolicitudes.fxml");
