@@ -42,7 +42,7 @@ public class EncuestaDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return encuestas1;
 	}
 	
 	public void delete(int IDEncuesta) {
