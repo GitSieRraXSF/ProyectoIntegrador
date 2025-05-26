@@ -1,12 +1,14 @@
 package Data;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import Application.Main;
 import Model.Recurso;
+import javafx.scene.control.Alert;
+import oracle.jdbc.internal.OracleTypes;
 
 public class RecursoDAO {
 	
@@ -17,56 +19,64 @@ public class RecursoDAO {
 	}
 	
 	public void save(Recurso recurso) {
-		String sql = "INSERT INTO Recurso (Tipo, Estado, SoftwareRequerido) VALUES (?, ?, ?, ?)";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		String sql = "{call InsertRecurso(?, ?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, recurso.getTipo());
-			stmt.setBoolean(2, recurso.isEstado());
-			stmt.setString(3, recurso.getSoftwareRequerido());
-			stmt.executeUpdate();
+			stmt.setString(2, recurso.getSoftwareRequerido());
+			stmt.setBoolean(3, recurso.isEstado());
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
 	public ArrayList<Recurso> fetch() {
-		ArrayList<Recurso> recursos1 = new ArrayList<>();
-		String sql = "SELECT * FROM Recurso";
-		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-			while (rs.next()) {
-				String tipo = rs.getString("Tipo");
-				boolean estado = rs.getBoolean("Estado");
-				String softwarerequerido = rs.getString("SoftwareRequerido");
-				Recurso recursos = new Recurso(tipo, softwarerequerido, estado);
-				recursos1.add(recursos);
+		ArrayList<Recurso> recursos = new ArrayList<>();
+		String sql = "{? = call FetchRecurso()}";
+		try (CallableStatement cs = connection.prepareCall(sql)) {
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			cs.execute();
+			try (ResultSet rs = (ResultSet) cs.getObject(1)){
+				while (rs.next()) {
+					String tipo = rs.getString("Tipo");
+					String softwareR = rs.getString("SoftwareRequerido");
+					boolean estado = rs.getBoolean("Estado");
+					Recurso RE = new Recurso(tipo, softwareR, estado);
+					recursos.add(RE);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
-		return null;
+		return recursos;
 	}
 	
 	public void update(Recurso recurso) {
-		String sql = "UPDATE Recurso SET Tipo=?, Estado=?, SoftwareRequerido=?";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		String sql = "{call = UpdateRecurso(?, ?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, recurso.getTipo());
-			stmt.setBoolean(2, recurso.isEstado());
-			stmt.setString(3, recurso.getSoftwareRequerido());
-			stmt.executeUpdate();
+			stmt.setString(2, recurso.getSoftwareRequerido());
+			stmt.setBoolean(3, recurso.isEstado());
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
-	public boolean authenticate(int IDRecurso) {
-		String sql = "SELECT IDRecurso FROM Recurso WHERE IDRecurso=?";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setInt(1, IDRecurso);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt("IDRecurso") == IDRecurso;
-			}
+	public boolean authenticate(String tipo) {
+		String sql = "{? = call AuthenticateRecurso(?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
+			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
+			stmt.setString(2, tipo);
+			stmt.execute();
+			int result = stmt.getInt(1);
+			return result == 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 		return false;
 	}

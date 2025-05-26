@@ -26,7 +26,7 @@ public class SolicitudPrestamoDAO {
 			stmt.setString(3, solicitud.getFechainicio());
 			stmt.setString(4, solicitud.getFechafinPrevista());
 			stmt.setBoolean(5, solicitud.isEstado());
-			stmt.executeUpdate();
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
@@ -65,7 +65,7 @@ public class SolicitudPrestamoDAO {
 			stmt.setString(3, solicitud.getFechainicio());
 			stmt.setString(4, solicitud.getFechafinPrevista());
 			stmt.setBoolean(5, solicitud.isEstado());
-			stmt.executeUpdate();
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
@@ -73,7 +73,7 @@ public class SolicitudPrestamoDAO {
 	}
 	
 	public void delete(String fecha) {
-		String sql = "{call DeleteSolicitud(?)}";
+		String sql = "{call DeleteSolicitudPrestamo(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, fecha);
 			stmt.execute();

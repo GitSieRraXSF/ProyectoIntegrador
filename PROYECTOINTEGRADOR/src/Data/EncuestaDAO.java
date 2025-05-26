@@ -1,12 +1,14 @@
 package Data;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import Application.Main;
 import Model.Encuesta;
+import javafx.scene.control.Alert;
+import oracle.jdbc.internal.OracleTypes;
 
 public class EncuestaDAO {
 	
@@ -17,54 +19,65 @@ public class EncuestaDAO {
 	}
 
 	public void save(Encuesta encuesta1) {
-		String sql = "INSERT INTO Encuesta (Funcionalidad, Calidad, Infraestructura) VALUES (?, ?, ?)";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+		String sql = "{call InsertEncuesta(?, ?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, encuesta1.getFuncionalidad());
 			stmt.setString(2, encuesta1.getCalidad());
 			stmt.setString(3, encuesta1.getInfraestructura());
-			stmt.executeUpdate();
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
 	public ArrayList<Encuesta> fetch() {
-		ArrayList<Encuesta> encuestas1 = new ArrayList<>();
-		String sql = "SELECT * FROM Encuesta";
-		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-			while (rs.next()) {
-				String funcionalidad = rs.getString("Funcionalidad");
-				String calidad = rs.getString("Calidad");
-				String infraestructura = rs.getString("Infraestructura");
-				Encuesta encuesta = new Encuesta(funcionalidad, calidad, infraestructura);
-				encuestas1.add(encuesta);
+		ArrayList<Encuesta> encuestas = new ArrayList<>();
+		//String sequel = "SELECT * FROM PROGRAMMINGII.Producto";
+		String sql = "{? = call FetchEncuesta()}";
+		try (CallableStatement cs = connection.prepareCall(sql)) {
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			cs.execute();
+			try (ResultSet rs = (ResultSet) cs.getObject(1)){
+				while (rs.next()) {
+					String funcionalidad = rs.getString("Funcionalidad");
+					String calidad = rs.getString("Calidad");
+					String infraestrutura = rs.getString("Infraestrutura");
+					Encuesta encuesta= new Encuesta(funcionalidad, calidad, infraestrutura);
+					encuestas.add(encuesta);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
-		return null;
+		return encuestas;
 	}
 	
-	public void delete(int IDEncuesta) {
-		String sql = "DELETE FROM Encuesta WHERE IDEncuesta=?";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setLong(1, IDEncuesta);
-			stmt.executeUpdate();
+	public void delete(Encuesta encuesta) {
+		String sql = "{call DeleteEncuesta(?, ?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
+			stmt.setString(1, encuesta.getFuncionalidad());
+			stmt.setString(2, encuesta.getCalidad());
+			stmt.setString(3, encuesta.getInfraestructura());
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
-	public boolean authenticate(int IDEncuesta) {
-		String sql = "SELECT IDEncuesta FROM Encuesta WHERE IDEncuesta=?";
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-			stmt.setLong(1, IDEncuesta);
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt("IDEncuesta") == IDEncuesta;
-			}
+	public boolean authenticate(String calidad) {
+		String sql = "{? = call AuthenticateEncuesta(?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
+			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
+			stmt.setString(2, calidad);
+			stmt.execute();
+			int result = stmt.getInt(1);
+			return result == 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 		return false;
 	}
