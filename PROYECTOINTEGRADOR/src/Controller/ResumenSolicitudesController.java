@@ -104,4 +104,13 @@ public class ResumenSolicitudesController {
     	tableSolicitudes.getItems().setAll(solicitudes);
     	tableSolicitudes.setEditable(true);
 	}
+	
+	@FXML
+    void VistaAnterior(ActionEvent event) {
+		if (Usersession.getInstance().getRole().equals("teacher")) {
+			Main.loadView("/view/SolicitudController.fxml");
+		} else {
+			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
+		}
+    }
 }

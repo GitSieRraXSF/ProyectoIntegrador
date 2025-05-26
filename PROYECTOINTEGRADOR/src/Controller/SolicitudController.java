@@ -54,4 +54,9 @@ public class SolicitudController {
     		Main.showAlert("Error!...", "Informacion invalida!!", "Todos los campos (5 campos) deben esta llenos para registrarlo.", Alert.AlertType.NONE);
     	}
     }
+    
+    @FXML
+    void verSoliresumen(ActionEvent event) {
+    	Main.loadView("/view/ResumenSolicitudes.fxml");
+    }
 }

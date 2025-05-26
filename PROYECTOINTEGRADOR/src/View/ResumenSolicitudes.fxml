@@ -30,8 +30,9 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4a6fa5; -fx-padding: 10px;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnActualizarResumen" mnemonicParsing="false" onAction="#actualizarResumen" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Actualizar Resumen" />
-            <Button fx:id="CATemplate" mnemonicParsing="false" onAction="#SubirTemplate" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Subir Datos" />
+            <Button fx:id="btnActualizarResumen" mnemonicParsing="false" onAction="#actualizarResumen" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-cursor: hand;" text="Actualizar Resumen" />
+            <Button fx:id="CATemplate" mnemonicParsing="false" onAction="#SubirTemplate" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-cursor: hand;" text="Subir Datos" />
+            <Button layoutX="403.0" layoutY="39.0" mnemonicParsing="false" onAction="#VistaAnterior" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-cursor: hand;" text="Ir Atras" />
          </children>
       </HBox>
    </bottom>
