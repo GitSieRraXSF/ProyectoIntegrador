@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="789.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RecursoController">
    <top>
       <Label style="-fx-text-fill: white; -fx-background-color: #4a6fa5; -fx-padding: 15px; -fx-font-size: 20px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" text="Lista de Recursos" BorderPane.alignment="CENTER">
@@ -20,10 +19,9 @@
    <center>
       <TableView fx:id="tableRecursos" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colId" prefWidth="147.0" text="ID" />
-          <TableColumn fx:id="colNombre" prefWidth="244.0" text="Nombre" />
-            <TableColumn fx:id="colTipo" prefWidth="172.0" text="Tipo" />
-            <TableColumn fx:id="colDisponibilidad" prefWidth="224.0" text="Disponibilidad" />
+          <TableColumn fx:id="colTipo" prefWidth="252.0" text="Tipo" />
+            <TableColumn fx:id="colSoftwareR" prefWidth="268.0" text="Software" />
+            <TableColumn fx:id="colEstado" prefWidth="248.0" text="Disponibilidad" />
         </columns>
       </TableView>
    </center>
