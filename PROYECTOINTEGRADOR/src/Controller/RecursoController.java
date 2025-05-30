@@ -2,6 +2,8 @@ package Controller;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import Application.Main;
 import Data.DBConnectionFactory;
 import Data.RecursoDAO;
 import Model.Recurso;
@@ -69,4 +71,9 @@ public class RecursoController {
 	void actualizarLista(ActionEvent event) {
 		initialize();
 	}
+	
+	@FXML
+    void VistaAnterior(ActionEvent event) {
+		Main.loadView("/view/FormatoRecursos.fxml");
+    }
 }

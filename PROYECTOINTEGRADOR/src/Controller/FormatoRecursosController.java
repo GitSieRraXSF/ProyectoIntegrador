@@ -54,4 +54,13 @@ public class FormatoRecursosController {
     		Main.showAlert("Advertencia!", "Guardado invalido", "Favor llenar los campos o ingrese una informacion valida.", Alert.AlertType.WARNING);
     	}
     }
+    
+    @FXML
+    void verRecursosfull(ActionEvent event) {
+    	if (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin")) {
+			Main.loadView("/view/RecursoController.fxml");
+		} else {
+			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
+		}
+    }
 }
