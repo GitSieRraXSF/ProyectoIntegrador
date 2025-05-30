@@ -61,7 +61,7 @@ public class UsuarioDAO{
 			stmt.setString(2, usuario.getEmail());
 			stmt.setString(3, usuario.getContraseña());
 			stmt.setString(4, usuario.getRole());
-			stmt.executeUpdate();
+			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);

@@ -43,4 +43,9 @@ public class EncuestaController {
     		Main.showAlert("Error!...", "Encuesta Invalida ó Rol Invalido!!", "No se ha podido registrar la encuesta dada.", Alert.AlertType.ERROR);
     	}
     }
+    
+    @FXML
+    void verEncuestas(ActionEvent event) {
+    	Main.loadView("/view/ListaEncuestas.fxml");
+    }
 }

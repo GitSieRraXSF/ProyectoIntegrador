@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="787.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="787.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaEncuestaController">
    <top>
       <Label style="-fx-text-fill: white; -fx-background-color: #4a6fa5; -fx-padding: 15px; -fx-effect: t;" text="Lista de Encuestas" BorderPane.alignment="CENTER">
          <font>
@@ -20,10 +19,9 @@
    <center>
       <TableView fx:id="tableEncuestas" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colIdEncuesta" prefWidth="201.0" text="ID Encuesta" />
-          <TableColumn fx:id="colSolicitante" prefWidth="199.0" text="Solicitante" />
-            <TableColumn fx:id="colFecha" prefWidth="189.0" text="Fecha" />
-            <TableColumn fx:id="colEstado" prefWidth="196.0" text="Estado" />
+          <TableColumn fx:id="colFuncionalidad" prefWidth="258.0" text="Funcionalidad" />
+            <TableColumn fx:id="colcalidad" prefWidth="256.0" text="Calidad" />
+            <TableColumn fx:id="colinfraestruc" prefWidth="248.0" text="Infraestructura" />
         </columns>
       </TableView>
    </center>
@@ -31,6 +29,8 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4a6fa5; -fx-padding: 10px;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizarLista" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Actualizar Lista" />
+            <Button mnemonicParsing="false" onAction="#VistaAnterior" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-cursor: hand;" text="Ir Atras" />
+            <Button mnemonicParsing="false" onAction="#deleteEncuesta" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2); -fx-cursor: hand;" text=" Eliminar Encuesta" />
          </children>
       </HBox>
    </bottom>

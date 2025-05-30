@@ -54,12 +54,23 @@ public class EncuestaDAO {
 		return encuestas;
 	}
 	
-	public void delete(Encuesta encuesta) {
-		String sql = "{call DeleteEncuesta(?, ?, ?)}";
+	public void update(Encuesta encuesta) {
+		String sql = "{call = UpdateEncuesta(?, ?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, encuesta.getFuncionalidad());
 			stmt.setString(2, encuesta.getCalidad());
 			stmt.setString(3, encuesta.getInfraestructura());
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
+		}
+	}
+	
+	public void delete(String Calidad) {
+		String sql = "{call DeleteEncuesta(?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
+			stmt.setString(1, Calidad);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

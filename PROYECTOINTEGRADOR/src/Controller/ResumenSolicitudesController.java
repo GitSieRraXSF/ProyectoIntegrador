@@ -106,8 +106,22 @@ public class ResumenSolicitudesController {
 	}
 	
 	@FXML
+    void deleteSolicitud(ActionEvent event) {
+		if (!tableSolicitudes.getSelectionModel().isEmpty() && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
+			SolicitudPrestamo soli1 = tableSolicitudes.getSelectionModel().getSelectedItem();
+			SolicitudDAO.delete(soli1.getFechaSolicitud());
+			initialize();
+		} else {
+			Main.showAlert("Ninguna solicitud seleccionada O Acceso denegado", "Referencia repetida O Acceso denegado",
+					"Debe registrar una referencia diferente O debes entrar al rol respectivo.",
+					Alert.AlertType.WARNING);
+		}
+		initialize();
+    }
+	
+	@FXML
     void VistaAnterior(ActionEvent event) {
-		if (Usersession.getInstance().getRole().equals("teacher")) {
+		if (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin")) {
 			Main.loadView("/view/SolicitudController.fxml");
 		} else {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
