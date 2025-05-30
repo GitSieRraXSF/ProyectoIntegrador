@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="787.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label style="-fx-text-fill: white; -fx-background-color: #4a6fa5; -fx-padding: 15px; -fx-effect: t;" text="Lista de Encuestas" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <TableView fx:id="tableEncuestas" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colIdEncuesta" prefWidth="201.0" text="ID Encuesta" />
+          <TableColumn fx:id="colSolicitante" prefWidth="199.0" text="Solicitante" />
+            <TableColumn fx:id="colFecha" prefWidth="189.0" text="Fecha" />
+            <TableColumn fx:id="colEstado" prefWidth="196.0" text="Estado" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4a6fa5; -fx-padding: 10px;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizarLista" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Actualizar Lista" />
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>
-
