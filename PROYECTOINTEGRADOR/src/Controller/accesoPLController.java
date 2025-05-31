@@ -66,6 +66,8 @@ public class accesoPLController {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
 			}
 			break;
+		default:
+			Main.showAlert("Peligro...!", "Proceso Erroneo!", "Favor llenar los espacios obligatorios para el ingreso al programa.", Alert.AlertType.WARNING);
     	}
     }
 }
