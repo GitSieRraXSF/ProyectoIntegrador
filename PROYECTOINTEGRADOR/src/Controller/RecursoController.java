@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -42,7 +43,6 @@ public class RecursoController {
 
 	@FXML
 	public void initialize() {
-
 		ObservableList<Recurso> availableRecursos = FXCollections.observableArrayList();
 		for (Recurso recurso5 : recursoDAO.fetch()) {
 			availableRecursos.add(recurso5);
@@ -73,7 +73,35 @@ public class RecursoController {
 	}
 	
 	@FXML
-    void VistaAnterior(ActionEvent event) {
-		Main.loadView("/view/FormatoRecursos.fxml");
+    void goBin(ActionEvent event) {
+		if (!tableRecursos.getSelectionModel().isEmpty()) {
+			Recurso recurso = tableRecursos.getSelectionModel().getSelectedItem();
+			recursoDAO.softdelete(recurso.getTipo(), recurso.isEstado());
+			initialize();
+		} else {
+			Main.showAlert("Error!", "Seleccion invalida...", "Seleccione un objecto para enviarlo a la papelera.", Alert.AlertType.NONE);
+		}
+		initialize();
     }
+
+    @FXML
+    void outBin(ActionEvent event) {
+    	if (!tableRecursos.getSelectionModel().isEmpty()) {
+			Recurso recurso = tableRecursos.getSelectionModel().getSelectedItem();
+			recursoDAO.softdelete(recurso.getTipo(), recurso.isEstado());
+			initialize();
+		} else {
+			Main.showAlert("Error!", "Seleccion invalida...", "Seleccione un objecto para enviarlo a la papelera.", Alert.AlertType.NONE);
+		}
+		initialize();
+    }
+
+	@FXML
+	void VistaAnterior(ActionEvent event) {
+		if (Usersession.getInstance().getRole().equals("admin")) {
+			Main.loadView("/view/FormatoRecursos.fxml");
+		} else {
+			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
+		}
+	}
 }

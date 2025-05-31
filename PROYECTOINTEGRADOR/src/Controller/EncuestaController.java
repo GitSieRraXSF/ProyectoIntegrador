@@ -46,6 +46,10 @@ public class EncuestaController {
     
     @FXML
     void verEncuestas(ActionEvent event) {
-    	Main.loadView("/view/ListaEncuestas.fxml");
+    	if (Usersession.getInstance().getRole().equals("teacher") ||Usersession.getInstance().getRole().equals("admin")) {
+    		Main.loadView("/view/ListaEncuestas.fxml");
+		} else {
+			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
+		}
     }
 }

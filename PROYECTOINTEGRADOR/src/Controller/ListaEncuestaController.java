@@ -76,7 +76,7 @@ public class ListaEncuestaController {
     
     @FXML
     void deleteEncuesta(ActionEvent event) {
-    	if (!tableEncuestas.getSelectionModel().isEmpty() && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
+    	if (!tableEncuestas.getSelectionModel().isEmpty() && Usersession.getInstance().getRole().equals("admin")) {
 			Encuesta encuesta15 = tableEncuestas.getSelectionModel().getSelectedItem();
 			encuestaDAO.delete(encuesta15.getCalidad());
 			initialize();

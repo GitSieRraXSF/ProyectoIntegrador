@@ -53,6 +53,18 @@ public class RecursoDAO {
 		return recursos;
 	}
 	
+	public void softdelete(String tipo, boolean estado) {
+		String sql = "{call = softdeleteRecurso(?, ?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
+			stmt.setString(1, tipo);
+			stmt.setBoolean(3, estado);
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
+		}
+	}
+	
 	public void update(Recurso recurso) {
 		String sql = "{call = UpdateRecurso(?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
