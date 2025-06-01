@@ -112,11 +112,11 @@ public class RecursoDAO {
 		}
 	}
 	
-	public boolean authenticate(String tipo) {
+	public boolean authenticate(String numRecurso) {
 		String sql = "{? = call AuthenticateRecurso(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			stmt.setString(2, tipo);
+			stmt.setString(2, numRecurso);
 			stmt.execute();
 			int result = stmt.getInt(1);
 			return result == 1;
