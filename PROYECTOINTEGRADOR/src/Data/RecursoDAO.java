@@ -54,6 +54,29 @@ public class RecursoDAO {
 		return recursos;
 	}
 	
+	public ArrayList<Recurso> fetchPrestados() {
+		ArrayList<Recurso> recursos9 = new ArrayList<>();
+		String sql = "{? = call FetchRecursoPrestados()}";
+		try (CallableStatement css = connection.prepareCall(sql)) {
+			css.registerOutParameter(1, OracleTypes.CURSOR);
+			css.execute();
+			try (ResultSet rsc = (ResultSet) css.getObject(1)){
+				while (rsc.next()) {
+					String tipo = rsc.getString("Tipo");
+					String softwareR = rsc.getString("SoftwareRequerido");
+					String numRecurso = rsc.getString("NumRecurso");
+					boolean estado = rsc.getBoolean("Estado");
+					Recurso RE1 = new Recurso(tipo, softwareR, numRecurso, estado);
+					recursos9.add(RE1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
+		}
+		return recursos9;
+	}
+	
 	public void softdelete(String numRecurso) {
 		String sql = "{call = softdeleteRecurso(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
