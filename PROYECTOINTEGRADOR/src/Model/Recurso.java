@@ -2,7 +2,7 @@ package Model;
 
 public class Recurso {
 
-	private String Tipo, softwareRequerido;
+	private String Tipo, softwareRequerido, numRecurso;
 	private boolean estado;
 	
 	public String getTipo() {
@@ -23,10 +23,17 @@ public class Recurso {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+	public String getNumRecurso() {
+		return numRecurso;
+	}
+	public void setNumRecurso(String numRecurso) {
+		this.numRecurso = numRecurso;
+	}
 	
-	public Recurso(String tipo, String softwareRequerido, boolean estado) {
+	public Recurso(String tipo, String softwareRequerido, String numRecurso, boolean estado) {
 		Tipo = tipo;
 		this.softwareRequerido = softwareRequerido;
+		this.numRecurso = numRecurso;
 		this.estado = estado;
 	}
 }

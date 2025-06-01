@@ -41,8 +41,9 @@ public class RecursoDAO {
 				while (rs.next()) {
 					String tipo = rs.getString("Tipo");
 					String softwareR = rs.getString("SoftwareRequerido");
+					String numRecurso = rs.getString("NumRecurso");
 					boolean estado = rs.getBoolean("Estado");
-					Recurso RE = new Recurso(tipo, softwareR, estado);
+					Recurso RE = new Recurso(tipo, softwareR, numRecurso, estado);
 					recursos.add(RE);
 				}
 			}
@@ -53,11 +54,21 @@ public class RecursoDAO {
 		return recursos;
 	}
 	
-	public void softdelete(String tipo, boolean estado) {
-		String sql = "{call = softdeleteRecurso(?, ?)}";
+	public void softdelete(String numRecurso) {
+		String sql = "{call = softdeleteRecurso(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, tipo);
-			stmt.setBoolean(3, estado);
+			stmt.setString(1, numRecurso);
+			stmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
+		}
+	}
+	
+	public void softdelete1(String numRecurso) {
+		String sql = "{call = softdeleteRecurso(?)}";
+		try (CallableStatement stmt = connection.prepareCall(sql)) {
+			stmt.setString(1, numRecurso);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

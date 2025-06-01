@@ -25,6 +25,9 @@ public class FormatoRecursosController {
     @FXML
     private TextField txtSoftwareR;
     
+    @FXML
+    private TextField txtnumeroRecur;
+    
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private RecursoDAO recursoDAO = new RecursoDAO(connection);
     
@@ -38,14 +41,14 @@ public class FormatoRecursosController {
     	switch (cbTipo.getSelectionModel().getSelectedItem()) {
     	case "Sala informaticaca":
     		if (recursoDAO.authenticate(cbTipo.getSelectionModel().getSelectedItem()) && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
-    			Recurso recurso = new Recurso(cbTipo.getSelectionModel().getSelectedItem(), txtSoftwareR.getText(), chkEstado.isSelected());
+    			Recurso recurso = new Recurso(cbTipo.getSelectionModel().getSelectedItem(), txtSoftwareR.getText(), txtnumeroRecur.getText(), chkEstado.isSelected());
     			recursoDAO.save(recurso);
     		} else {
     			Main.showAlert("Error!", "Recurso Invalido", "Ingrese un nuevo recurso o actualice uno que ya esta.", Alert.AlertType.ERROR);
     		}
     	case "Equipo":
     		if (recursoDAO.authenticate(cbTipo.getSelectionModel().getSelectedItem()) && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
-    			Recurso recurso = new Recurso(cbTipo.getSelectionModel().getSelectedItem(), txtSoftwareR.getText(), chkEstado.isSelected());
+    			Recurso recurso = new Recurso(cbTipo.getSelectionModel().getSelectedItem(), txtSoftwareR.getText(), txtnumeroRecur.getText(), chkEstado.isSelected());
     			recursoDAO.save(recurso);
     		} else {
     			Main.showAlert("Error!", "Recurso Invalido", "Ingrese un nuevo recurso o actualice uno que ya esta.", Alert.AlertType.ERROR);

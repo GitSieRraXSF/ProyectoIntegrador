@@ -30,6 +30,7 @@
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <padding>
@@ -40,8 +41,10 @@
             <ComboBox fx:id="cbTipo" prefWidth="200.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" />
             <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Programa" GridPane.rowIndex="1" />
             <TextField fx:id="txtSoftwareR" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Disponibilidad" GridPane.rowIndex="2" />
-            <CheckBox fx:id="chkEstado" mnemonicParsing="false" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Disponible" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Disponibilidad" GridPane.rowIndex="3" />
+            <CheckBox fx:id="chkEstado" mnemonicParsing="false" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Disponible" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtnumeroRecur" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Numero del Recurso" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

@@ -76,7 +76,7 @@ public class RecursoController {
     void goBin(ActionEvent event) {
 		if (!tableRecursos.getSelectionModel().isEmpty()) {
 			Recurso recurso = tableRecursos.getSelectionModel().getSelectedItem();
-			recursoDAO.softdelete(recurso.getTipo(), recurso.isEstado());
+			recursoDAO.softdelete(recurso.getNumRecurso());
 			initialize();
 		} else {
 			Main.showAlert("Error!", "Seleccion invalida...", "Seleccione un objecto para enviarlo a la papelera.", Alert.AlertType.NONE);
@@ -88,7 +88,7 @@ public class RecursoController {
     void outBin(ActionEvent event) {
     	if (!tableRecursos.getSelectionModel().isEmpty()) {
 			Recurso recurso = tableRecursos.getSelectionModel().getSelectedItem();
-			recursoDAO.softdelete(recurso.getTipo(), recurso.isEstado());
+			recursoDAO.softdelete1(recurso.getNumRecurso());
 			initialize();
 		} else {
 			Main.showAlert("Error!", "Seleccion invalida...", "Seleccione un objecto para enviarlo a la papelera.", Alert.AlertType.NONE);
