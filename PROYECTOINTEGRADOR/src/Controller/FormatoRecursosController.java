@@ -63,4 +63,10 @@ public class FormatoRecursosController {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
 		}
     }
+    
+    @FXML
+    void LogOut(ActionEvent event) {
+    	Usersession.getInstance().destroy();
+    	Main.loadView("/view/accesoPL.fxml");
+    }
 }

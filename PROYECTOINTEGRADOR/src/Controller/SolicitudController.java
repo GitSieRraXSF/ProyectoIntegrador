@@ -59,4 +59,10 @@ public class SolicitudController {
     void verSoliresumen(ActionEvent event) {
     	Main.loadView("/view/ResumenSolicitudes.fxml");
     }
+    
+    @FXML
+    void LogOut(ActionEvent event) {
+    	Usersession.getInstance().destroy();
+    	Main.loadView("/view/accesoPL.fxml");
+    }
 }

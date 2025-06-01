@@ -121,7 +121,7 @@ public class ResumenSolicitudesController {
 	
 	@FXML
     void VistaAnterior(ActionEvent event) {
-		if (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin")) {
+		if (Usersession.getInstance().getRole().equals("teacher")) {
 			Main.loadView("/view/SolicitudController.fxml");
 		} else {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
