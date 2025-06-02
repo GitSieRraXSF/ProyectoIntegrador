@@ -44,7 +44,7 @@ public class SolicitudController {
     	String horafin = txthorafin.getText();
     	boolean estado = CheckEstado.isSelected();
     	if (txtFechaSolicitante.getText().isBlank() || txtfechaDevo.getText().isBlank() || txthoraInico.getText().isBlank() || txthorafin.getText().isBlank()) {
-	    	if (!SolicitudDAO.authenticate(fechaSolicitud) || Usersession.getInstance().getRole().equals("Docente")) {
+	    	if (!SolicitudDAO.authenticate(fechaSolicitud) || Usersession.getInstance().getRole().equals("teacher")) {
 	    		SolicitudPrestamo solicitud = new SolicitudPrestamo(fechaSolicitud, horainicio, horafin, fechaDevolucion, estado);
 	    		SolicitudDAO.save(solicitud);
 	    	} else {
@@ -57,7 +57,11 @@ public class SolicitudController {
     
     @FXML
     void verSoliresumen(ActionEvent event) {
-    	Main.loadView("/view/ResumenSolicitudes.fxml");
+    	if (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin")) {
+    		Main.loadView("/view/ResumenSolicitudes.fxml");
+		} else {
+			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
+		}
     }
     
     @FXML

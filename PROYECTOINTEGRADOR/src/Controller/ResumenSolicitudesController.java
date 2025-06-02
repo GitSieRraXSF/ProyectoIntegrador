@@ -107,7 +107,7 @@ public class ResumenSolicitudesController {
 	
 	@FXML
     void deleteSolicitud(ActionEvent event) {
-		if (!tableSolicitudes.getSelectionModel().isEmpty() && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
+		if (!tableSolicitudes.getSelectionModel().isEmpty() && Usersession.getInstance().getRole().equals("teacher")) {
 			SolicitudPrestamo soli1 = tableSolicitudes.getSelectionModel().getSelectedItem();
 			SolicitudDAO.delete(soli1.getFechaSolicitud());
 			initialize();
