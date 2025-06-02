@@ -60,6 +60,7 @@ public class RecursoController {
 	void LoadTableView(ArrayList<Recurso> recursos1) {
 		colTipo.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
 		colSoftwareR.setCellValueFactory(new PropertyValueFactory<>("fechainicio"));
+		colNumrecurso1.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
 		colEstado.setCellFactory(CheckBoxTableCell.forTableColumn(index -> {
 			Recurso recurso = colEstado.getTableView().getItems().get(index);
 			return new SimpleBooleanProperty(recurso.isEstado());
