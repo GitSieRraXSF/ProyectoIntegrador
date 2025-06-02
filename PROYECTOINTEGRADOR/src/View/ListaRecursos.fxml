@@ -19,9 +19,10 @@
    <center>
       <TableView fx:id="tableRecursos" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colTipo" prefWidth="252.0" text="Tipo" />
-            <TableColumn fx:id="colSoftwareR" prefWidth="268.0" text="Software" />
-            <TableColumn fx:id="colEstado" prefWidth="248.0" text="Disponibilidad" />
+          <TableColumn fx:id="colTipo" prefWidth="190.0" text="Tipo" />
+            <TableColumn fx:id="colSoftwareR" prefWidth="201.0" text="Software" />
+            <TableColumn fx:id="colNumrecurso1" prefWidth="203.0" text="Numero de ID" />
+            <TableColumn fx:id="colEstado" prefWidth="175.0" text="Disponibilidad" />
         </columns>
       </TableView>
    </center>

@@ -33,6 +33,9 @@ public class RecursoController {
 
 	@FXML
 	private TableColumn<Recurso, String> colTipo;
+	
+	@FXML
+    private TableColumn<Recurso, String> colNumrecurso1;
 
 	@FXML
 	private TableView<Recurso> tableRecursos;
@@ -50,6 +53,7 @@ public class RecursoController {
 		colTipo.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
 		colSoftwareR.setCellValueFactory(new PropertyValueFactory<>("fechainicio"));
 		colEstado.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
+		colNumrecurso1.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
 		tableRecursos.setItems(availableRecursos);
 	}
 
