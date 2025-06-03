@@ -3,6 +3,7 @@ package Controller;
 import java.sql.Connection;
 import Application.Main;
 import Data.DBConnectionFactory;
+import Data.RecursoDAO;
 import Data.ReporteDevolucionDAO;
 import Data.SolicitudPrestamoDAO;
 import Model.SolicitudPrestamo;
@@ -37,6 +38,7 @@ public class SolicitudController {
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private SolicitudPrestamoDAO SolicitudDAO = new SolicitudPrestamoDAO(connection);
     private ReporteDevolucionDAO reporteDAO = new ReporteDevolucionDAO(connection);
+    private RecursoDAO recursoDAO = new RecursoDAO(connection);
     
     @FXML
     void guardarSolicitud(ActionEvent event) {
@@ -47,11 +49,11 @@ public class SolicitudController {
     	boolean estado = CheckEstado.isSelected();
     	if (txtNombreUser.getText().isBlank() || txtfechaDevo.getText().isBlank() || txthoraInico.getText().isBlank() || txthorafin.getText().isBlank()) {
 	    	if (!SolicitudDAO.authenticate(nombreuser) || Usersession.getInstance().getRole().equals("teacher")) {
-	    		if (!reporteDAO.authenticate(nombreuser)) {
+	    		if (!reporteDAO.authenticate(nombreuser) && !recursoDAO.fetch().isEmpty()) {
 	    			SolicitudPrestamo solicitud = new SolicitudPrestamo(nombreuser, horainicio, horafin, fechaDevolucion, estado);
 		    		SolicitudDAO.save(solicitud);
 	    		} else {
-	    			Main.showAlert("Error!", "Restringido!", "Tienes por lo menos una sancion.", Alert.AlertType.ERROR);
+	    			Main.showAlert("Error!", "Restringido!", "Tienes por lo menos una sancion ó no hay ningun recurso disponible.", Alert.AlertType.ERROR);
 	    		}
 	    	} else {
 	    		Main.showAlert("Error!...", "Solicitud Invalida ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
