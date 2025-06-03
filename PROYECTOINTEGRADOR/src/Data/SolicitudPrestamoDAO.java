@@ -21,7 +21,7 @@ public class SolicitudPrestamoDAO {
 	public void save(SolicitudPrestamo solicitud) {
 		String sql = "{call InsertSolicitudPrestamo(?, ?, ?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, solicitud.getFechaSolicitud());
+			stmt.setString(1, solicitud.getNombreUsuario());
 			stmt.setString(2, solicitud.getFechaDevolucionReal());
 			stmt.setString(3, solicitud.getFechainicio());
 			stmt.setString(4, solicitud.getFechafinPrevista());
@@ -41,12 +41,12 @@ public class SolicitudPrestamoDAO {
 			cs.execute();
 			try (ResultSet rs = (ResultSet) cs.getObject(1)){
 				while (rs.next()) {
-					String FechaSolicitud = rs.getString("FechaSolicitud");
+					String nombreusuario = rs.getString("NombreUsuario");
 					String fechainicio = rs.getString("fechainicio");
 					String fechafinPrevista = rs.getString("fechafinPrevista");
 					String fechaDevolucionReal = rs.getString("fechaDevolucionReal");
 					boolean estado = rs.getBoolean("Estado");
-					SolicitudPrestamo Solicitud = new SolicitudPrestamo(FechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
+					SolicitudPrestamo Solicitud = new SolicitudPrestamo(nombreusuario, fechainicio, fechafinPrevista, fechaDevolucionReal, estado);
 					solicitudes.add(Solicitud);
 				}
 			}
@@ -60,7 +60,7 @@ public class SolicitudPrestamoDAO {
 	public void update(SolicitudPrestamo solicitud) {
 		String sql = "{call = UpdateSolicitud(?, ?, ?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, solicitud.getFechaSolicitud());
+			stmt.setString(1, solicitud.getNombreUsuario());
 			stmt.setString(2, solicitud.getFechaDevolucionReal());
 			stmt.setString(3, solicitud.getFechainicio());
 			stmt.setString(4, solicitud.getFechafinPrevista());
@@ -72,10 +72,10 @@ public class SolicitudPrestamoDAO {
 		}
 	}
 	
-	public void delete(String fecha) {
+	public void delete(String user) {
 		String sql = "{call DeleteSolicitudPrestamo(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, fecha);
+			stmt.setString(1, user);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,11 +83,11 @@ public class SolicitudPrestamoDAO {
 		}
 	}
 	
-	public boolean authenticate(String fecha) {
+	public boolean authenticate(String user) {
 		String sql = "{? = call AuthenticateSolicitud(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			stmt.setString(2, fecha);
+			stmt.setString(2, user);
 			stmt.execute();
 			int result = stmt.getInt(1);
 			return result == 1;

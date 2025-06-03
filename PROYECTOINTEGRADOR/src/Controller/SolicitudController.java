@@ -3,6 +3,7 @@ package Controller;
 import java.sql.Connection;
 import Application.Main;
 import Data.DBConnectionFactory;
+import Data.ReporteDevolucionDAO;
 import Data.SolicitudPrestamoDAO;
 import Model.SolicitudPrestamo;
 import Model.Usersession;
@@ -22,8 +23,8 @@ public class SolicitudController {
     private Button btnGuardar;
 
     @FXML
-    private TextField txtFechaSolicitante;
-
+    private TextField txtNombreUser;
+    
     @FXML
     private TextField txtfechaDevo;
 
@@ -35,18 +36,23 @@ public class SolicitudController {
     
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private SolicitudPrestamoDAO SolicitudDAO = new SolicitudPrestamoDAO(connection);
+    private ReporteDevolucionDAO reporteDAO = new ReporteDevolucionDAO(connection);
     
     @FXML
     void guardarSolicitud(ActionEvent event) {
-    	String fechaSolicitud = txtFechaSolicitante.getText();
+    	String nombreuser = txtNombreUser.getText();
     	String fechaDevolucion = txtfechaDevo.getText();
     	String horainicio = txthoraInico.getText();
     	String horafin = txthorafin.getText();
     	boolean estado = CheckEstado.isSelected();
-    	if (txtFechaSolicitante.getText().isBlank() || txtfechaDevo.getText().isBlank() || txthoraInico.getText().isBlank() || txthorafin.getText().isBlank()) {
-	    	if (!SolicitudDAO.authenticate(fechaSolicitud) || Usersession.getInstance().getRole().equals("teacher")) {
-	    		SolicitudPrestamo solicitud = new SolicitudPrestamo(fechaSolicitud, horainicio, horafin, fechaDevolucion, estado);
-	    		SolicitudDAO.save(solicitud);
+    	if (txtNombreUser.getText().isBlank() || txtfechaDevo.getText().isBlank() || txthoraInico.getText().isBlank() || txthorafin.getText().isBlank()) {
+	    	if (!SolicitudDAO.authenticate(nombreuser) || Usersession.getInstance().getRole().equals("teacher")) {
+	    		if (!reporteDAO.authenticate(nombreuser)) {
+	    			SolicitudPrestamo solicitud = new SolicitudPrestamo(nombreuser, horainicio, horafin, fechaDevolucion, estado);
+		    		SolicitudDAO.save(solicitud);
+	    		} else {
+	    			Main.showAlert("Error!", "Restringido!", "Tienes por lo menos una sancion.", Alert.AlertType.ERROR);
+	    		}
 	    	} else {
 	    		Main.showAlert("Error!...", "Solicitud Invalida ó Rol Invalido!!", "No se ha podido registrar la solicitud dada.", Alert.AlertType.ERROR);
 	    	}

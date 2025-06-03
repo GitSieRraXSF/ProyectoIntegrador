@@ -47,7 +47,7 @@ public class RecursoController {
 	@FXML
 	public void initialize() {
 		ObservableList<Recurso> availableRecursos = FXCollections.observableArrayList();
-		for (Recurso recurso5 : recursoDAO.fetch()) {
+		for (Recurso recurso5 : recursoDAO.fetchPrestados()) {
 			availableRecursos.add(recurso5);
 		}
 		colTipo.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));

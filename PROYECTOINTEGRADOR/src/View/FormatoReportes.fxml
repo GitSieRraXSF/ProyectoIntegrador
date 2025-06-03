@@ -41,8 +41,8 @@
             <TextField fx:id="txtDescrip" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Situacion" GridPane.rowIndex="3" />
             <CheckBox fx:id="chkEstado" mnemonicParsing="false" style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Grave?" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtReparar" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Reparacion" GridPane.rowIndex="2" />
+            <TextField fx:id="txtUsuarioinvolu" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label style="-fx-text-fill: #2c3e50; -fx-font-size: 14px; -fx-font-weight: bold;" text="Usuario Involucrado" GridPane.rowIndex="2" />
             <TextField fx:id="txtFechaVeri" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #f9f9f9; -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px; -fx-padding: 5px; -fx-font-size: 14px;" GridPane.columnIndex="1" />
          </children>
       </GridPane>

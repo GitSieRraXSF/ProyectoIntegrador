@@ -2,14 +2,14 @@ package Model;
 
 public class SolicitudPrestamo {
 
-	private String FechaSolicitud, fechainicio, fechafinPrevista, fechaDevolucionReal;
+	private String NombreUsuario, fechainicio, fechafinPrevista, fechaDevolucionReal;
 	private boolean Estado;
 	
-	public String getFechaSolicitud() {
-		return FechaSolicitud;
+	public String getNombreUsuario() {
+		return NombreUsuario;
 	}
-	public void setFechaSolicitud(String fechaSolicitud) {
-		FechaSolicitud = fechaSolicitud;
+	public void setNombreUsuario(String ns) {
+		NombreUsuario = ns;
 	}
 	public String getFechainicio() {
 		return fechainicio;
@@ -36,8 +36,8 @@ public class SolicitudPrestamo {
 		Estado = estado;
 	}
 	
-	public SolicitudPrestamo(String fechaSolicitud, String fechainicio, String fechafinPrevista, String fechaDevolucionReal, boolean estado) {
-		FechaSolicitud = fechaSolicitud;
+	public SolicitudPrestamo(String us, String fechainicio, String fechafinPrevista, String fechaDevolucionReal, boolean estado) {
+		NombreUsuario = us;
 		this.fechainicio = fechainicio;
 		this.fechafinPrevista = fechafinPrevista;
 		this.fechaDevolucionReal = fechaDevolucionReal;

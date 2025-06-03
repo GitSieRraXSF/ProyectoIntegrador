@@ -23,7 +23,7 @@ public class ReporteDevolucionDAO {
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, reporte.getFechaVerificacion());
 			stmt.setString(2, reporte.getDescripcion());
-			stmt.setString(3, reporte.getReparacion());
+			stmt.setString(3, reporte.getUsuarioInvolucrado());
 			stmt.setBoolean(4, reporte.isEstado());
 			stmt.execute();
 		} catch (SQLException e) {
@@ -42,9 +42,9 @@ public class ReporteDevolucionDAO {
 				while (rs.next()) {
 					String fechaveri = rs.getString("Fechaverificacion");
 					String desc = rs.getString("Descripcion");
-					String reparar = rs.getString("Reparacion");
+					String userI = rs.getString("UsuarioInvolucrado");
 					boolean estado = rs.getBoolean("Estado");
-					ReporteDevolucion reporte = new ReporteDevolucion(fechaveri, desc, reparar, estado);
+					ReporteDevolucion reporte = new ReporteDevolucion(fechaveri, desc, userI, estado);
 					reportes.add(reporte);
 				}
 			}
@@ -60,7 +60,7 @@ public class ReporteDevolucionDAO {
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, reporte1.getFechaVerificacion());
 			stmt.setString(2, reporte1.getDescripcion());
-			stmt.setString(3, reporte1.getReparacion());
+			stmt.setString(3, reporte1.getUsuarioInvolucrado());
 			stmt.setBoolean(4, reporte1.isEstado());
 			stmt.execute();
 		} catch (SQLException e) {
@@ -79,11 +79,11 @@ public class ReporteDevolucionDAO {
 		}
 	}
 	
-	public boolean authenticate(String fecha) {
+	public boolean authenticate(String userInvolu) {
 		String sql = "{? = call AuthenticateReporteDevolucion(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			stmt.setString(2, fecha);
+			stmt.setString(2, userInvolu);
 			stmt.execute();
 			int result = stmt.getInt(1);
 			return result == 1;

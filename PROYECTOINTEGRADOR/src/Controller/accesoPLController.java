@@ -43,7 +43,7 @@ public class accesoPLController {
     		connection = DBConnectionFactory.getConnectionByRole("admin").getConnection();
 			usuarioDAO = new UsuarioDAO(connection);
 			if (usuarioDAO.authenticate(txtNombre.getText(), txtEmail.getText(), txtContraseña.getText(), "admin")) {
-				Main.loadView("/view/RegistroProductos.fxml");
+				Main.loadView("/view/FormatoReportes.fxml");
 			} else {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
 			}
@@ -58,10 +58,10 @@ public class accesoPLController {
 			}
 			break;
     	case "supervisor":
-    		connection = DBConnectionFactory.getConnectionByRole("teacher").getConnection();
+    		connection = DBConnectionFactory.getConnectionByRole("supervisor").getConnection();
 			usuarioDAO = new UsuarioDAO(connection);
 			if (usuarioDAO.authenticate(txtNombre.getText(), txtEmail.getText(), txtContraseña.getText(), "supervisor")) {
-				Main.loadView("/view/ResumenSolicitudes.fxml");
+				Main.loadView("/view/ListaRecursos.fxml");
 			} else {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
 			}

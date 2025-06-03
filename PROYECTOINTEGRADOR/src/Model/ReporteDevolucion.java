@@ -2,7 +2,7 @@ package Model;
 
 public class ReporteDevolucion {
 
-	private String FechaVerificacion, Descripcion, Reparacion;
+	private String FechaVerificacion, Descripcion, UsuarioInvolucrado;
 	private boolean Estado;
 	
 	public String getFechaVerificacion() {
@@ -17,11 +17,11 @@ public class ReporteDevolucion {
 	public void setDescripcion(String descripcion) {
 		Descripcion = descripcion;
 	}
-	public String getReparacion() {
-		return Reparacion;
+	public String getUsuarioInvolucrado() {
+		return UsuarioInvolucrado;
 	}
-	public void setReparacion(String reparacion) {
-		this.Reparacion = reparacion;
+	public void setUsuarioInvolucrado(String userInvolu) {
+		this.UsuarioInvolucrado = userInvolu;
 	}
 	public boolean isEstado() {
 		return Estado;
@@ -30,11 +30,11 @@ public class ReporteDevolucion {
 		Estado = estado;
 	}
 	
-	public ReporteDevolucion(String fechaVerificacion, String descripcion, String reparacion,
+	public ReporteDevolucion(String fechaVerificacion, String descripcion, String userInvolu,
 			boolean estado) {
 		FechaVerificacion = fechaVerificacion;
 		Descripcion = descripcion;
-		Reparacion = reparacion;
+		UsuarioInvolucrado = userInvolu;
 		Estado = estado;
 	}
 }

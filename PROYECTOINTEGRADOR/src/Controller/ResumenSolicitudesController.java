@@ -35,7 +35,7 @@ public class ResumenSolicitudesController {
     private TableColumn<SolicitudPrestamo, Boolean> colEstado;
 
     @FXML
-    private TableColumn<SolicitudPrestamo, String> colIdfechaSoli;
+    private TableColumn<SolicitudPrestamo, String> colNombreuser;
 
     @FXML
     private TableColumn<SolicitudPrestamo, String> colfechaDevo;
@@ -60,7 +60,7 @@ public class ResumenSolicitudesController {
     		availableSolicitudes.add(solicitud2);
     	}
     	// Bind only the columns you want to show
-    	colIdfechaSoli.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
+    	colNombreuser.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
     	colfechainicio.setCellValueFactory(new PropertyValueFactory<>("fechainicio"));
     	colfechafinprevista.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
     	colfechaDevo.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucionReal"));
@@ -91,7 +91,7 @@ public class ResumenSolicitudesController {
     }
 
 	void LoadTableView(ArrayList<SolicitudPrestamo> solicitudes) {
-		colIdfechaSoli.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
+		colNombreuser.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
     	colfechainicio.setCellValueFactory(new PropertyValueFactory<>("fechainicio"));
     	colfechafinprevista.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
     	colfechaDevo.setCellValueFactory(new PropertyValueFactory<>("fechaDevolucionReal"));
@@ -99,7 +99,7 @@ public class ResumenSolicitudesController {
     	colfechainicio.setCellFactory(TextFieldTableCell.forTableColumn());
     	colfechainicio.setOnEditCommit(event -> {
 			SolicitudPrestamo solicitud = event.getRowValue();
-			solicitud.setFechaSolicitud(event.getNewValue());
+			solicitud.setNombreUsuario(event.getNewValue());
 		});
     	tableSolicitudes.getItems().setAll(solicitudes);
     	tableSolicitudes.setEditable(true);
@@ -109,7 +109,7 @@ public class ResumenSolicitudesController {
     void deleteSolicitud(ActionEvent event) {
 		if (!tableSolicitudes.getSelectionModel().isEmpty() && Usersession.getInstance().getRole().equals("teacher")) {
 			SolicitudPrestamo soli1 = tableSolicitudes.getSelectionModel().getSelectedItem();
-			SolicitudDAO.delete(soli1.getFechaSolicitud());
+			SolicitudDAO.delete(soli1.getNombreUsuario());
 			initialize();
 		} else {
 			Main.showAlert("Ninguna solicitud seleccionada O Acceso denegado", "Referencia repetida O Acceso denegado",

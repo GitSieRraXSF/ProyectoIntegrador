@@ -24,7 +24,7 @@ public class FormatoReporteController {
     private TextField txtFechaVeri;
 
     @FXML
-    private TextField txtReparar;
+    private TextField txtUsuarioinvolu;
     
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private ReporteDevolucionDAO reporteDAO = new ReporteDevolucionDAO(connection);
@@ -39,11 +39,11 @@ public class FormatoReporteController {
     void guardarReporte(ActionEvent event) {
     	String fechaveri = txtFechaVeri.getText();
     	String descripcion = txtDescrip.getText();
-    	String reparacion = txtReparar.getText();
+    	String userIn = txtUsuarioinvolu.getText();
     	boolean gravedad = chkEstado.isSelected();
-    	if (!txtFechaVeri.getText().isBlank() || !txtDescrip.getText().isBlank() || !txtReparar.getText().isBlank()) {
+    	if (!txtFechaVeri.getText().isBlank() || !txtDescrip.getText().isBlank() || !txtUsuarioinvolu.getText().isBlank()) {
     		if (!reporteDAO.authenticate(fechaveri) || Usersession.getInstance().getRole().equals("admin")) {
-    			ReporteDevolucion reporte4 = new ReporteDevolucion(fechaveri, descripcion, reparacion, gravedad);
+    			ReporteDevolucion reporte4 = new ReporteDevolucion(fechaveri, descripcion, userIn, gravedad);
     			reporteDAO.save(reporte4);
     		} else {
     			Main.showAlert("Error!...", "Reporte Repetido ó Usuario invalido!", "Ingrese un reporte diferente o que no este, ó entre en el usuario valido", Alert.AlertType.ERROR);

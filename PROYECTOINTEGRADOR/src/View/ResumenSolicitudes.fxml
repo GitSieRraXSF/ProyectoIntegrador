@@ -19,7 +19,7 @@
    <center>
       <TableView fx:id="tableSolicitudes" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colIdfechaSoli" prefWidth="137.0" text="FechaSolicitud" />
+          <TableColumn fx:id="colNombreuser" prefWidth="137.0" text="Nombre" />
           <TableColumn fx:id="colfechainicio" prefWidth="146.0" text="FechaInicio" />
             <TableColumn fx:id="colfechafinprevista" prefWidth="164.0" text="FechaFinPrevista" />
             <TableColumn fx:id="colfechaDevo" prefWidth="188.0" text="FechaDevolucion" />
