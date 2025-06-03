@@ -1,7 +1,6 @@
 package Controller;
 
 import java.sql.Connection;
-
 import Application.Main;
 import Data.DBConnectionFactory;
 import Data.RecursoDAO;

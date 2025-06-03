@@ -23,7 +23,8 @@ public class RecursoDAO {
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, recurso.getTipo());
 			stmt.setString(2, recurso.getSoftwareRequerido());
-			stmt.setBoolean(3, recurso.isEstado());
+			stmt.setString(3, recurso.getNumRecurso());
+			stmt.setBoolean(4, recurso.isEstado());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

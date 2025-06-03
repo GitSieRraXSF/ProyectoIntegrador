@@ -19,11 +19,12 @@ public class ReporteDevolucionDAO {
 	}
 	
 	public void save(ReporteDevolucion reporte) {
-		String sql = "{call InsertReporteDevolucion(?, ?, ?)}";
+		String sql = "{call InsertReporteDevolucion(?, ?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, reporte.getFechaVerificacion());
-			stmt.setString(2, reporte.getReparacion());
-			stmt.setBoolean(3, reporte.isEstado());
+			stmt.setString(2, reporte.getDescripcion());
+			stmt.setString(3, reporte.getReparacion());
+			stmt.setBoolean(4, reporte.isEstado());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,9 +41,10 @@ public class ReporteDevolucionDAO {
 			try (ResultSet rs = (ResultSet) cs.getObject(1)){
 				while (rs.next()) {
 					String fechaveri = rs.getString("Fechaverificacion");
-					String reparacion = rs.getString("Reparacion");
+					String desc = rs.getString("Descripcion");
+					String reparar = rs.getString("Reparacion");
 					boolean estado = rs.getBoolean("Estado");
-					ReporteDevolucion reporte = new ReporteDevolucion(fechaveri, reparacion, estado);
+					ReporteDevolucion reporte = new ReporteDevolucion(fechaveri, desc, reparar, estado);
 					reportes.add(reporte);
 				}
 			}
@@ -54,11 +56,12 @@ public class ReporteDevolucionDAO {
 	}
 	
 	public void update(ReporteDevolucion reporte1) {
-		String sql = "{call = UpdateReporteDevolucion(?, ?, ?)}";
+		String sql = "{call = UpdateReporteDevolucion(?, ?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, reporte1.getFechaVerificacion());
-			stmt.setString(2, reporte1.getReparacion());
-			stmt.setBoolean(3, reporte1.isEstado());
+			stmt.setString(2, reporte1.getDescripcion());
+			stmt.setString(3, reporte1.getReparacion());
+			stmt.setBoolean(4, reporte1.isEstado());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
