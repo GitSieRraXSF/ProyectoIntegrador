@@ -34,7 +34,7 @@ public class RecursoDAO {
 	
 	public ArrayList<Recurso> fetch() {
 		ArrayList<Recurso> recursos = new ArrayList<>();
-		String sql = "{? = call FetchRecurso()}";
+		String sql = "{? = call FetchRecursoDisponibles()}";
 		try (CallableStatement cs = connection.prepareCall(sql)) {
 			cs.registerOutParameter(1, OracleTypes.CURSOR);
 			cs.execute();
