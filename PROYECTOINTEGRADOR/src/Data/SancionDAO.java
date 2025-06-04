@@ -19,10 +19,11 @@ public class SancionDAO {
 	}
 	
 	public void save(Sancion sancion69) {
-		String sql = "{call InsertSancion(?, ?)}";
+		String sql = "{call InsertSancion(?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setInt(1, sancion69.getValorMulta());
 			stmt.setString(2, sancion69.getMotivo());
+			stmt.setString(3, sancion69.getUsuario_involucrado());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,9 +40,10 @@ public class SancionDAO {
 			try (ResultSet rs = (ResultSet) cs.getObject(1)){
 				while (rs.next()) {
 					int valorMulta = rs.getInt("valorMulta");
-					String motivo = rs.getString("Email");
-					Sancion user = new Sancion(valorMulta, motivo);
-					sanciones.add(user);
+					String motivo = rs.getString("Motivo");
+					String user = rs.getString("Usuario_Involucrado");
+					Sancion sancion00 = new Sancion(valorMulta, motivo, user);
+					sanciones.add(sancion00);
 				}
 			}
 		} catch (SQLException e) {
@@ -63,10 +65,10 @@ public class SancionDAO {
 		}
 	}
 	
-	public void delete(int valorMotivo) {
+	public void delete(String user1) {
 		String sql = "{call DeleteSancion(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setInt(1, valorMotivo);
+			stmt.setString(1, user1);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,11 +76,11 @@ public class SancionDAO {
 		}
 	}
 	
-	public boolean authenticate(int valorMotivo) {
+	public boolean authenticate(String user4) {
 		String sql = "{? = call AuthenticateSancion(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			stmt.setInt(2, valorMotivo);
+			stmt.setString(2, user4);
 			stmt.execute();
 			int result = stmt.getInt(1);
 			return result == 1;

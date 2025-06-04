@@ -55,9 +55,8 @@ public class EncuestaDAO {
 	}
 	
 	public void update(Encuesta encuesta) {
-		String sql = "{call = UpdateEncuesta(?, ?, ?, ?)}";
+		String sql = "{call = UpdateEncuesta(?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, encuesta.getFuncionalidad());
 			stmt.setString(2, encuesta.getCalidad());
 			stmt.setString(3, encuesta.getInfraestructura());
 			stmt.execute();

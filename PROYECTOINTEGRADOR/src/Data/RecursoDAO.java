@@ -19,7 +19,7 @@ public class RecursoDAO {
 	}
 	
 	public void save(Recurso recurso) {
-		String sql = "{call InsertRecurso(?, ?, ?)}";
+		String sql = "{call InsertRecurso(?, ?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, recurso.getTipo());
 			stmt.setString(2, recurso.getSoftwareRequerido());
@@ -78,10 +78,11 @@ public class RecursoDAO {
 		return recursos9;
 	}
 	
-	public void softdelete(String numRecurso) {
-		String sql = "{call = softdeleteRecurso(?)}";
+	public void softdelete1(String numRecurso, boolean estado) {
+		String sql = "{call = softdeleteRecurso1(?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, numRecurso);
+			stmt.setBoolean(2, estado);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -89,23 +90,11 @@ public class RecursoDAO {
 		}
 	}
 	
-	public void softdelete1(String numRecurso) {
-		String sql = "{call = softdeleteRecurso(?)}";
+	public void softdelete2(String numRecurso, boolean estado) {
+		String sql = "{call = softdeleteRecurso2(?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, numRecurso);
-			stmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
-		}
-	}
-	
-	public void update(Recurso recurso) {
-		String sql = "{call = UpdateRecurso(?, ?, ?)}";
-		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, recurso.getTipo());
-			stmt.setString(2, recurso.getSoftwareRequerido());
-			stmt.setBoolean(3, recurso.isEstado());
+			stmt.setBoolean(2, estado);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

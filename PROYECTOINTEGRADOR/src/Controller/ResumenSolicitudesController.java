@@ -100,6 +100,7 @@ public class ResumenSolicitudesController {
     	colfechainicio.setOnEditCommit(event -> {
 			SolicitudPrestamo solicitud = event.getRowValue();
 			solicitud.setNombreUsuario(event.getNewValue());
+			SolicitudDAO.update(solicitud);
 		});
     	tableSolicitudes.getItems().setAll(solicitudes);
     	tableSolicitudes.setEditable(true);

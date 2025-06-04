@@ -47,7 +47,7 @@ public class RecursoController {
 	@FXML
 	public void initialize() {
 		ObservableList<Recurso> availableRecursos = FXCollections.observableArrayList();
-		for (Recurso recurso5 : recursoDAO.fetchPrestados()) {
+		for (Recurso recurso5 : recursoDAO.fetch()) {
 			availableRecursos.add(recurso5);
 		}
 		colTipo.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
@@ -79,9 +79,9 @@ public class RecursoController {
 	
 	@FXML
     void goBin(ActionEvent event) {
-		if (!tableRecursos.getSelectionModel().isEmpty()) {
+		if (!tableRecursos.getSelectionModel().isEmpty() && Usersession.getInstance().getRole().equals("admin")) {
 			Recurso recurso = tableRecursos.getSelectionModel().getSelectedItem();
-			recursoDAO.softdelete(recurso.getNumRecurso());
+			recursoDAO.softdelete1(recurso.getNumRecurso(), recurso.isEstado());
 			initialize();
 		} else {
 			Main.showAlert("Error!", "Seleccion invalida...", "Seleccione un objecto para enviarlo a la papelera.", Alert.AlertType.NONE);
@@ -91,9 +91,9 @@ public class RecursoController {
 
     @FXML
     void outBin(ActionEvent event) {
-    	if (!tableRecursos.getSelectionModel().isEmpty()) {
+    	if (!tableRecursos.getSelectionModel().isEmpty() && Usersession.getInstance().getRole().equals("admin")) {
 			Recurso recurso = tableRecursos.getSelectionModel().getSelectedItem();
-			recursoDAO.softdelete1(recurso.getNumRecurso());
+			recursoDAO.softdelete2(recurso.getNumRecurso(), recurso.isEstado());
 			initialize();
 		} else {
 			Main.showAlert("Error!", "Seleccion invalida...", "Seleccione un objecto para enviarlo a la papelera.", Alert.AlertType.NONE);
@@ -103,7 +103,7 @@ public class RecursoController {
 
 	@FXML
 	void VistaAnterior(ActionEvent event) {
-		if (Usersession.getInstance().getRole().equals("admin")) {
+		if (Usersession.getInstance().getRole().equals("admin") || Usersession.getInstance().getRole().equals("teacher")) {
 			Main.loadView("/view/FormatoRecursos.fxml");
 		} else {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);

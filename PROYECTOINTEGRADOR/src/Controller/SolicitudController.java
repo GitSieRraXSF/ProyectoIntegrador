@@ -4,7 +4,7 @@ import java.sql.Connection;
 import Application.Main;
 import Data.DBConnectionFactory;
 import Data.RecursoDAO;
-import Data.ReporteDevolucionDAO;
+import Data.SancionDAO;
 import Data.SolicitudPrestamoDAO;
 import Model.SolicitudPrestamo;
 import Model.Usersession;
@@ -37,7 +37,7 @@ public class SolicitudController {
     
     private Connection connection = DBConnectionFactory.getConnectionByRole(Usersession.getInstance().getRole()).getConnection();
     private SolicitudPrestamoDAO SolicitudDAO = new SolicitudPrestamoDAO(connection);
-    private ReporteDevolucionDAO reporteDAO = new ReporteDevolucionDAO(connection);
+    private SancionDAO sancionDAO = new SancionDAO(connection);
     private RecursoDAO recursoDAO = new RecursoDAO(connection);
     
     @FXML
@@ -48,8 +48,8 @@ public class SolicitudController {
     	String horafin = txthorafin.getText();
     	boolean estado = CheckEstado.isSelected();
     	if (txtNombreUser.getText().isBlank() || txtfechaDevo.getText().isBlank() || txthoraInico.getText().isBlank() || txthorafin.getText().isBlank()) {
-	    	if (!SolicitudDAO.authenticate(nombreuser) || Usersession.getInstance().getRole().equals("teacher")) {
-	    		if (!reporteDAO.authenticate(nombreuser) && !recursoDAO.fetch().isEmpty()) {
+	    	if (!SolicitudDAO.authenticate(nombreuser) && Usersession.getInstance().getRole().equals("teacher")) {
+	    		if (!sancionDAO.authenticate(nombreuser) && !recursoDAO.fetch().isEmpty()) {
 	    			SolicitudPrestamo solicitud = new SolicitudPrestamo(nombreuser, horainicio, horafin, fechaDevolucion, estado);
 		    		SolicitudDAO.save(solicitud);
 	    		} else {
@@ -61,6 +61,7 @@ public class SolicitudController {
     	} else {
     		Main.showAlert("Error!...", "Informacion invalida!!", "Todos los campos (5 campos) deben esta llenos para registrarlo.", Alert.AlertType.NONE);
     	}
+    	limpiarCampos();
     }
     
     @FXML
@@ -76,5 +77,12 @@ public class SolicitudController {
     void LogOut(ActionEvent event) {
     	Usersession.getInstance().destroy();
     	Main.loadView("/view/accesoPL.fxml");
+    }
+    
+    private void limpiarCampos() {
+    	txtNombreUser.clear();
+    	txtfechaDevo.clear();
+    	txthoraInico.clear();
+    	txthorafin.clear();
     }
 }

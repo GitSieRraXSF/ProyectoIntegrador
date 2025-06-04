@@ -58,13 +58,11 @@ public class SolicitudPrestamoDAO {
 	}
 	
 	public void update(SolicitudPrestamo solicitud) {
-		String sql = "{call = UpdateSolicitud(?, ?, ?, ?, ?)}";
+		String sql = "{call = UpdateSolicitud(?, ?, ?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, solicitud.getNombreUsuario());
 			stmt.setString(2, solicitud.getFechaDevolucionReal());
 			stmt.setString(3, solicitud.getFechainicio());
-			stmt.setString(4, solicitud.getFechafinPrevista());
-			stmt.setBoolean(5, solicitud.isEstado());
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
