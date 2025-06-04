@@ -36,7 +36,7 @@ public class EncuestaController {
     	String funcion = txtAFuncionalidad.getText();
     	String Calidad = txtCalidad.getText();
     	String InfraEstruc = txtAInfraestructura.getText();
-    	if ((txtAFuncionalidad.getText().isBlank() || txtCalidad.getText().isBlank() || txtAInfraestructura.getText().isBlank()) && Usersession.getInstance().getRole().equals("Docente")) {
+    	if ((txtAFuncionalidad.getText().isBlank() || txtCalidad.getText().isBlank() || txtAInfraestructura.getText().isBlank()) && Usersession.getInstance().getRole().equals("teacher")) {
     		Encuesta encuesta = new Encuesta(funcion, Calidad, InfraEstruc);
     		encuestaDAO.save(encuesta);
     	} else {
@@ -46,7 +46,7 @@ public class EncuestaController {
     
     @FXML
     void verEncuestas(ActionEvent event) {
-    	if (Usersession.getInstance().getRole().equals("teacher") ||Usersession.getInstance().getRole().equals("admin")) {
+    	if (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin")) {
     		Main.loadView("/view/ListaEncuestas.fxml");
 		} else {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);

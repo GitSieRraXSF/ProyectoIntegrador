@@ -76,19 +76,4 @@ public class EncuestaDAO {
 			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
-	
-	public boolean authenticate(String calidad) {
-		String sql = "{? = call AuthenticateEncuesta(?)}";
-		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.registerOutParameter(1, java.sql.Types.INTEGER);
-			stmt.setString(2, calidad);
-			stmt.execute();
-			int result = stmt.getInt(1);
-			return result == 1;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
-		}
-		return false;
-	}
 }

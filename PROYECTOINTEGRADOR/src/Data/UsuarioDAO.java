@@ -2,13 +2,10 @@ package Data;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import Application.Main;
 import Model.Usuario;
 import javafx.scene.control.Alert;
-import oracle.jdbc.internal.OracleTypes;
 
 public class UsuarioDAO{
 	
@@ -28,43 +25,6 @@ public class UsuarioDAO{
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	public ArrayList<Usuario> fetch() {
-		ArrayList<Usuario> usuarios = new ArrayList<>();
-		String sql = "{? = call FetchUsuario()}";
-		try (CallableStatement cs = connection.prepareCall(sql)) {
-			cs.registerOutParameter(1, OracleTypes.CURSOR);
-			cs.execute();
-			try (ResultSet rs = (ResultSet) cs.getObject(1)){
-				while (rs.next()) {
-					String Nombre = rs.getString("Nombre");
-					String Email = rs.getString("Email");
-					String Contraseña = rs.getString("Contraseña");
-					String Role = rs.getString("Role");
-					Usuario user = new Usuario(Nombre, Email, Contraseña, Role);
-					usuarios.add(user);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
-		}
-		return usuarios;
-	}
-	
-	public void Update(Usuario usuario) {
-		String sql = "{call = UpdateUsuario(?, ?, ?, ?)}";
-		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setString(1, usuario.getNombre());
-			stmt.setString(2, usuario.getEmail());
-			stmt.setString(3, usuario.getContraseña());
-			stmt.setString(4, usuario.getRole());
-			stmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	

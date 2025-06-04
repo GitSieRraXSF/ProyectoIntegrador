@@ -53,18 +53,6 @@ public class SancionDAO {
 		return sanciones;
 	}
 	
-	public void update(Sancion sancion1) {
-		String sql = "{call = UpdateSancion(?, ?)}";
-		try (CallableStatement stmt = connection.prepareCall(sql)) {
-			stmt.setInt(1, sancion1.getValorMulta());
-			stmt.setString(2, sancion1.getMotivo());
-			stmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
-		}
-	}
-	
 	public void delete(String user1) {
 		String sql = "{call DeleteSancion(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {

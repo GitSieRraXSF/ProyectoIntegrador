@@ -54,7 +54,7 @@ public class FormatoReporteController {
     	String userIn = txtUsuarioinvolu.getText();
     	boolean gravedad = chkEstado.isSelected();
     	if (!txtFechaVeri.getText().isBlank() || !txtDescrip.getText().isBlank() || !txtUsuarioinvolu.getText().isBlank() || !chkEstado.isSelected()) {
-    		if (!reporteDAO.authenticate(fechaveri) || Usersession.getInstance().getRole().equals("admin")) {
+    		if (!reporteDAO.authenticate(userIn) || Usersession.getInstance().getRole().equals("admin")) {
     			ReporteDevolucion reporte4 = new ReporteDevolucion(fechaveri, descripcion, userIn, gravedad);
     			reporteDAO.save(reporte4);
     		if (!sancionDAO.authenticate(userIn) && chkEstado.isSelected()) {
