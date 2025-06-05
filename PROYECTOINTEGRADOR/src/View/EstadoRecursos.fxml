@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="627.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="627.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EstadoRecursosController">
    <top>
       <Label style="-fx-text-fill: white; -fx-background-color: #4a6fa5; -fx-padding: 15px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);" text="Estado de Recursos" BorderPane.alignment="CENTER">
          <font>
@@ -34,10 +33,10 @@
                   </Label>
                   <TableView fx:id="tableDisponibles" prefHeight="410.0" prefWidth="280.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;">
                      <columns>
-                        <TableColumn fx:id="colIdDisp" prefWidth="50.0" text="ID" />
-                        <TableColumn fx:id="colNombreDisp" prefWidth="100.0" text="Nombre" />
-                        <TableColumn fx:id="colTipoDisp" prefWidth="70.0" text="Tipo" />
-                        <TableColumn fx:id="colUbicacionDisp" prefWidth="60.0" text="Ubicacion" />
+                        <TableColumn fx:id="colTipoDisp" prefWidth="59.0" text="Tipo" />
+                        <TableColumn fx:id="colSoftwareDisp" prefWidth="78.0" text="Software" />
+                        <TableColumn fx:id="colNumeroDisp" prefWidth="74.0" text="Numero" />
+                        <TableColumn fx:id="colEstadoDisp" prefWidth="69.0" text="Estado" />
                      </columns>
                   </TableView>
                </children>
@@ -49,12 +48,12 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="hb" prefHeight="410.0" prefWidth="280.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;">
+                  <TableView fx:id="tablaPrestados" prefHeight="410.0" prefWidth="280.0" style="-fx-background-color: #ffffff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5); -fx-border-color: #d1d5db; -fx-border-radius: 5px; -fx-border-width: 1px;">
                      <columns>
-                        <TableColumn fx:id="colIdPrest" prefWidth="50.0" text="ID" />
-                        <TableColumn fx:id="colNombrePrest" prefWidth="100.0" text="Nombre" />
-                        <TableColumn fx:id="colTipoPrest" prefWidth="70.0" text="Tipo" />
-                        <TableColumn fx:id="colUbicacionPrest" prefWidth="60.0" text="Ubicacion" />
+                        <TableColumn fx:id="colTipoPrest" prefWidth="61.0" text="Tipo" />
+                        <TableColumn fx:id="colSoftwarePrest" prefWidth="74.0" text="Software" />
+                        <TableColumn fx:id="colNumeroPrest" prefWidth="78.0" text="Numero" />
+                        <TableColumn fx:id="colEstadoPrest" prefWidth="67.0" text="Estado" />
                      </columns>
                   </TableView>
                </children>
@@ -66,6 +65,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4a6fa5; -fx-padding: 10px;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#actualizarEstado" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Actualizar Estado" />
+            <Button fx:id="btnVistaAnterior" mnemonicParsing="false" onAction="#IrAtrasVista" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Ir Atras" />
          </children>
       </HBox>
    </bottom>

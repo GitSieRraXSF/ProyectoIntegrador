@@ -79,6 +79,15 @@ public class SolicitudController {
     	Main.loadView("/view/accesoPL.fxml");
     }
     
+    @FXML
+    void verRecursosGeneral(ActionEvent event) {
+    	if (Usersession.getInstance().getRole().equals("teacher")) {
+    		Main.loadView("/view/EstadoRecursos.fxml");
+		} else {
+			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
+		}
+    }
+    
     private void limpiarCampos() {
     	txtNombreUser.clear();
     	txtfechaDevo.clear();

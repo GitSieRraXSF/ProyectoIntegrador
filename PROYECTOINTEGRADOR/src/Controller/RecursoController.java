@@ -1,8 +1,6 @@
 package Controller;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-
 import Application.Main;
 import Data.DBConnectionFactory;
 import Data.RecursoDAO;
@@ -47,20 +45,12 @@ public class RecursoController {
 	@FXML
 	public void initialize() {
 		ObservableList<Recurso> availableRecursos = FXCollections.observableArrayList();
-		for (Recurso recurso5 : recursoDAO.fetch()) {
-			availableRecursos.add(recurso5);
+		for (Recurso recurso3 : recursoDAO.fetch()) {
+			availableRecursos.add(recurso3);
 		}
 		colTipo.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
 		colSoftwareR.setCellValueFactory(new PropertyValueFactory<>("fechainicio"));
 		colEstado.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
-		colNumrecurso1.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
-		tableRecursos.setItems(availableRecursos);
-	}
-
-	void LoadTableView(ArrayList<Recurso> recursos1) {
-		colTipo.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));
-		colSoftwareR.setCellValueFactory(new PropertyValueFactory<>("fechainicio"));
-		colNumrecurso1.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
 		colEstado.setCellFactory(CheckBoxTableCell.forTableColumn(index -> {
 			Recurso recurso = colEstado.getTableView().getItems().get(index);
 			return new SimpleBooleanProperty(recurso.isEstado());
@@ -68,7 +58,8 @@ public class RecursoController {
 		colEstado.setOnEditCommit(event -> {
 			event.getRowValue().setEstado(event.getNewValue());
 		});
-		tableRecursos.getItems().setAll(recursos1);
+		colNumrecurso1.setCellValueFactory(new PropertyValueFactory<>("fechafinPrevista"));
+		tableRecursos.setItems(availableRecursos);
 		tableRecursos.setEditable(true);
 	}
 
@@ -103,7 +94,7 @@ public class RecursoController {
 
 	@FXML
 	void VistaAnterior(ActionEvent event) {
-		if (Usersession.getInstance().getRole().equals("admin") || Usersession.getInstance().getRole().equals("teacher")) {
+		if (Usersession.getInstance().getRole().equals("admin")) {
 			Main.loadView("/view/FormatoRecursos.fxml");
 		} else {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
