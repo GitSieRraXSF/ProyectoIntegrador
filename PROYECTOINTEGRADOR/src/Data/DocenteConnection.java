@@ -8,8 +8,8 @@ public class DocenteConnection implements DBConnection {
 
 	private static DocenteConnection instance; //Singleton
     private Connection connection;
-	private final String username = "docente"; //programmingII
-	private final String password = "docente"; //programmingII
+	private final String username = "teacher1"; //programmingII
+	private final String password = "teacher"; //programmingII
 	private final String host = "192.168.254.215";
 	private final String port = "1521";
 	private final String service = "orcl";

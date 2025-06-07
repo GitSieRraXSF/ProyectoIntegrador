@@ -8,8 +8,8 @@ public class AdminitradorConnection implements DBConnection{
 
 	private static AdminitradorConnection instance; //Singleton
     private Connection connection;
-	private final String username = "Admin";
-	private final String password = "Admin";
+	private final String username = "Admin11";
+	private final String password = "admin";
 	private final String host = "192.168.254.215";
 	private final String port = "1521";
 	private final String service = "orcl";

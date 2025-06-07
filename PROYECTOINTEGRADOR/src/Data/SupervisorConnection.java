@@ -8,7 +8,7 @@ public class SupervisorConnection implements DBConnection {
 
 	private static SupervisorConnection instance; //Singleton
     private Connection connection;
-	private final String username="supervisor";
+	private final String username="supervisor1";
 	private final String password="supervisor";
 	private final String host = "192.168.254.215";
 	private final String port = "1521";
