@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
-public class SolicitudController {
+public class SolicitudController implements ClearCampos {
 
 	@FXML
     private CheckBox CheckEstado;
@@ -52,6 +52,7 @@ public class SolicitudController {
 	    		if (!sancionDAO.authenticate(nombreuser) && !recursoDAO.fetch().isEmpty()) {
 	    			SolicitudPrestamo solicitud = new SolicitudPrestamo(nombreuser, horainicio, horafin, fechaDevolucion, estado);
 		    		SolicitudDAO.save(solicitud);
+		    		limpiarCampos();
 	    		} else {
 	    			Main.showAlert("Error!", "Restringido!", "Tienes por lo menos una sancion ó no hay ningun recurso disponible.", Alert.AlertType.ERROR);
 	    		}
@@ -61,7 +62,6 @@ public class SolicitudController {
     	} else {
     		Main.showAlert("Error!...", "Informacion invalida!!", "Todos los campos (5 campos) deben esta llenos para registrarlo.", Alert.AlertType.NONE);
     	}
-    	limpiarCampos();
     }
     
     @FXML
@@ -87,11 +87,12 @@ public class SolicitudController {
 			Main.showAlert("Aviso!", "Rol invalido!", "Tienes que tener el rol adecuado para entrar a la vista", Alert.AlertType.INFORMATION);
 		}
     }
-    
-    private void limpiarCampos() {
-    	txtNombreUser.clear();
-    	txtfechaDevo.clear();
-    	txthoraInico.clear();
-    	txthorafin.clear();
-    }
+
+	@Override
+	public void limpiarCampos() {
+		txtNombreUser.clear();
+		txtfechaDevo.clear();
+		txthoraInico.clear();
+		txthorafin.clear();
+	}
 }

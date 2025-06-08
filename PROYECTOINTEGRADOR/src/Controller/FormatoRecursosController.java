@@ -13,7 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class FormatoRecursosController {
+public class FormatoRecursosController implements ClearCampos {
 	
 	@FXML
     private ComboBox<String> cbTipo;
@@ -42,6 +42,7 @@ public class FormatoRecursosController {
     		if (recursoDAO.authenticate(cbTipo.getSelectionModel().getSelectedItem()) && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
     			Recurso recurso = new Recurso(cbTipo.getSelectionModel().getSelectedItem(), txtSoftwareR.getText(), txtnumeroRecur.getText(), chkEstado.isSelected());
     			recursoDAO.save(recurso);
+    			limpiarCampos();
     		} else {
     			Main.showAlert("Error!", "Recurso Invalido", "Ingrese un nuevo recurso o actualice uno que ya esta.", Alert.AlertType.ERROR);
     		}
@@ -49,6 +50,7 @@ public class FormatoRecursosController {
     		if (recursoDAO.authenticate(cbTipo.getSelectionModel().getSelectedItem()) && (Usersession.getInstance().getRole().equals("teacher") || Usersession.getInstance().getRole().equals("admin"))) {
     			Recurso recurso = new Recurso(cbTipo.getSelectionModel().getSelectedItem(), txtSoftwareR.getText(), txtnumeroRecur.getText(), chkEstado.isSelected());
     			recursoDAO.save(recurso);
+    			limpiarCampos();
     		} else {
     			Main.showAlert("Error!", "Recurso Invalido", "Ingrese un nuevo recurso o actualice uno que ya esta.", Alert.AlertType.ERROR);
     		}
@@ -71,4 +73,10 @@ public class FormatoRecursosController {
     	Usersession.getInstance().destroy();
     	Main.loadView("/view/accesoPL.fxml");
     }
+
+	@Override
+	public void limpiarCampos() {
+		txtSoftwareR.clear();
+		txtnumeroRecur.clear();
+	}
 }

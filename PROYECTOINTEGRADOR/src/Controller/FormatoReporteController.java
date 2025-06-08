@@ -14,7 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
-public class FormatoReporteController {
+public class FormatoReporteController implements ClearCampos {
 	
 	@FXML
     private CheckBox chkEstado;
@@ -57,11 +57,13 @@ public class FormatoReporteController {
     		if (!reporteDAO.authenticate(userIn) || Usersession.getInstance().getRole().equals("admin")) {
     			ReporteDevolucion reporte4 = new ReporteDevolucion(fechaveri, descripcion, userIn, gravedad);
     			reporteDAO.save(reporte4);
+    			limpiarCampos();
     		if (!sancionDAO.authenticate(userIn) && chkEstado.isSelected()) {
     			String motivo = txtMotivoSancion.getText();
     			int valorM = Integer.parseInt(txtvalormultaSancion.getText());
     			Sancion sancion = new Sancion(valorM, motivo, userIn);
     			sancionDAO.save(sancion);
+    			limpiarCampos();
     		}
     		} else {
     			Main.showAlert("Error!...", "Reporte Repetido ó Usuario invalido!", "Ingrese un reporte diferente o que no este, ó entre en el usuario valido", Alert.AlertType.ERROR);
@@ -77,17 +79,19 @@ public class FormatoReporteController {
     	if (chkfianza.isSelected() && !txtUsuarioinvolu.getText().isBlank()) {
     		String userIn = txtUsuarioinvolu.getText();
     		sancionDAO.delete(userIn);
+    		limpiarCampos();
     		Main.showAlert("Exito!", "Sancion Eliminada", "La sancion que colocaste al usuario ha sido eliminado con exito!", Alert.AlertType.CONFIRMATION);
     	} else {
     		Main.showAlert("Error!", "Procedimiento invalido!", "No se ha podido eliminar la sancion al usuario, favor colocar uno.", Alert.AlertType.ERROR);
     	}
     }
-    
-    private void limpiarCampos() {
-    	txtDescrip.clear();
-    	txtFechaVeri.clear();
-    	txtUsuarioinvolu.clear();
-    	txtMotivoSancion.clear();
-    	txtvalormultaSancion.clear();
-    }
+
+	@Override
+	public void limpiarCampos() {
+		txtDescrip.clear();
+		txtFechaVeri.clear();
+		txtUsuarioinvolu.clear();
+		txtMotivoSancion.clear();
+		txtvalormultaSancion.clear();
+	}
 }

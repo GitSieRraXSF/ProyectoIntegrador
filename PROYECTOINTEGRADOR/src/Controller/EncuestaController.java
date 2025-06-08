@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class EncuestaController {
+public class EncuestaController implements ClearCampos {
 
 	@FXML
     private Button btnEnviarEncuesta;
@@ -39,6 +39,7 @@ public class EncuestaController {
     	if ((txtAFuncionalidad.getText().isBlank() || txtCalidad.getText().isBlank() || txtAInfraestructura.getText().isBlank()) && Usersession.getInstance().getRole().equals("teacher")) {
     		Encuesta encuesta = new Encuesta(funcion, Calidad, InfraEstruc);
     		encuestaDAO.save(encuesta);
+    		limpiarCampos();
     	} else {
     		Main.showAlert("Error!...", "Encuesta Invalida ó Rol Invalido!!", "No se ha podido registrar la encuesta dada.", Alert.AlertType.ERROR);
     	}
@@ -58,4 +59,11 @@ public class EncuestaController {
     	Usersession.getInstance().destroy();
     	Main.loadView("/view/accesoPL.fxml");
     }
+
+	@Override
+	public void limpiarCampos() {
+		txtAFuncionalidad.clear();
+		txtAInfraestructura.clear();
+		txtCalidad.clear();
+	}
 }

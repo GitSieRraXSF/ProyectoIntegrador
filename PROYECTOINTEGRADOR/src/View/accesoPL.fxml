@@ -51,6 +51,7 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #4a6fa5; -fx-padding: 10px;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnIniciarSesion" alignment="CENTER" mnemonicParsing="false" onAction="#iniciarSesion" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Iniciar Sesion" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#RegistrarUsuario" style="-fx-background-color: #ffffff; -fx-text-fill: #4a6fa5; -fx-font-size: 14px; -fx-padding: 10px 30px; -fx-background-radius: 5px; -fx-border-color: #4a6fa5; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);" text="Registrar" />
          </children>
       </HBox>
    </bottom>
