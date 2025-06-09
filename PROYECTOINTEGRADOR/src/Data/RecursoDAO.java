@@ -67,8 +67,8 @@ public class RecursoDAO {
 					String softwareR = rs.getString("SoftwareRequerido");
 					String numRecurso = rs.getString("NumRecurso");
 					boolean estado = rs.getBoolean("Estado");
-					Recurso RE = new Recurso(tipo, softwareR, numRecurso, estado);
-					recursos.add(RE);
+					Recurso RE1 = new Recurso(tipo, softwareR, numRecurso, estado);
+					recursos.add(RE1);
 				}
 			}
 		} catch (SQLException e) {
@@ -90,8 +90,8 @@ public class RecursoDAO {
 					String softwareR = rsc.getString("SoftwareRequerido");
 					String numRecurso = rsc.getString("NumRecurso");
 					boolean estado = rsc.getBoolean("Estado");
-					Recurso RE1 = new Recurso(tipo, softwareR, numRecurso, estado);
-					recursos9.add(RE1);
+					Recurso RE2 = new Recurso(tipo, softwareR, numRecurso, estado);
+					recursos9.add(RE2);
 				}
 			}
 		} catch (SQLException e) {
