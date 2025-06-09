@@ -61,7 +61,7 @@ public class EstadoRecursosController {
 	public void initialize() {
 		//Recursos Disponibles
 		ObservableList<Recurso> availableRecursos = FXCollections.observableArrayList();
-		for (Recurso recurso5 : recursoDAO.fetch()) {
+		for (Recurso recurso5 : recursoDAO.fetchDisponibles()) {
 			availableRecursos.add(recurso5);
 		}
 		colTipoDisp.setCellValueFactory(new PropertyValueFactory<>("FechaSolicitud"));

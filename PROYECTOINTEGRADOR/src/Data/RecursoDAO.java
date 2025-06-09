@@ -34,6 +34,29 @@ public class RecursoDAO {
 	
 	public ArrayList<Recurso> fetch() {
 		ArrayList<Recurso> recursos = new ArrayList<>();
+		String sql = "{? = call FetchRecursos()}";
+		try (CallableStatement cs = connection.prepareCall(sql)) {
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
+			cs.execute();
+			try (ResultSet rs = (ResultSet) cs.getObject(1)){
+				while (rs.next()) {
+					String tipo = rs.getString("Tipo");
+					String softwareR = rs.getString("SoftwareRequerido");
+					String numRecurso = rs.getString("NumRecurso");
+					boolean estado = rs.getBoolean("Estado");
+					Recurso RE = new Recurso(tipo, softwareR, numRecurso, estado);
+					recursos.add(RE);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			Main.showAlert("Error...!", "Proceso invalido!", e.getMessage(), Alert.AlertType.ERROR);
+		}
+		return recursos;
+	}
+	
+	public ArrayList<Recurso> fetchDisponibles() {
+		ArrayList<Recurso> recursos = new ArrayList<>();
 		String sql = "{? = call FetchRecursoDisponibles()}";
 		try (CallableStatement cs = connection.prepareCall(sql)) {
 			cs.registerOutParameter(1, OracleTypes.CURSOR);
@@ -78,11 +101,10 @@ public class RecursoDAO {
 		return recursos9;
 	}
 	
-	public void softdelete1(String numRecurso, boolean estado) {
-		String sql = "{call = softdeleteRecurso1(?, ?)}";
+	public void softdelete1(String numRecurso) {
+		String sql = "{call = softdeleteRecurso1(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, numRecurso);
-			stmt.setBoolean(2, estado);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,11 +112,10 @@ public class RecursoDAO {
 		}
 	}
 	
-	public void softdelete2(String numRecurso, boolean estado) {
-		String sql = "{call = softdeleteRecurso2(?, ?)}";
+	public void softdelete2(String numRecurso) {
+		String sql = "{call = softdeleteRecurso2(?)}";
 		try (CallableStatement stmt = connection.prepareCall(sql)) {
 			stmt.setString(1, numRecurso);
-			stmt.setBoolean(2, estado);
 			stmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
