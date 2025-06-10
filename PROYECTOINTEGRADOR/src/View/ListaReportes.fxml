@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="470.0" prefWidth="680.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="ListaReportesController">
+<BorderPane prefHeight="470.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ListaReportesController">
    <center>
       <TableView fx:id="tableReportes" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
