@@ -4,11 +4,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
-	private static AnchorPane rootLayout;
+	private static BorderPane rootLayout;
 
 	@Override
 	public void start(Stage primaryStage) {
