@@ -25,6 +25,7 @@ public class UsuarioDAO{
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+			Main.showAlert("Error!", "Proceso Erroneo guardar.", e.getMessage(), Alert.AlertType.ERROR);
 		}
 	}
 	
@@ -41,7 +42,7 @@ public class UsuarioDAO{
 			return Result == 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			Main.showAlert("Error!!...", "Proceso invalido", e.getMessage(), Alert.AlertType.ERROR);
+			Main.showAlert("Error!!...", "Proceso invalido verificar", e.getMessage(), Alert.AlertType.ERROR);
 		}
 		return false;
 	}

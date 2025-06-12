@@ -47,7 +47,6 @@ public class accesoPLController implements ClearCampos {
 			usuarioDAO = new UsuarioDAO(connection);
 			if (usuarioDAO.authenticate(txtNombre.getText(), txtEmail.getText(), txtContraseña.getText(), "admin")) {
 				UserS = Usersession.getInstance(txtNombre.getText(), "admin");
-				limpiarCampos();
 				Main.loadView("/view/FormatoReportes.fxml");
 			} else {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
@@ -58,7 +57,6 @@ public class accesoPLController implements ClearCampos {
 			usuarioDAO = new UsuarioDAO(connection);
 			if (usuarioDAO.authenticate(txtNombre.getText(), txtEmail.getText(), txtContraseña.getText(), "teacher")) {
 				UserS = Usersession.getInstance(txtNombre.getText(), "teacher");
-				limpiarCampos();
 				Main.loadView("/view/FormatoSolicitud.fxml");
 			} else {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
@@ -69,7 +67,6 @@ public class accesoPLController implements ClearCampos {
 			usuarioDAO = new UsuarioDAO(connection);
 			if (usuarioDAO.authenticate(txtNombre.getText(), txtEmail.getText(), txtContraseña.getText(), "supervisor")) {
 				UserS = Usersession.getInstance(txtNombre.getText(), "supervisor");
-				limpiarCampos();
 				Main.loadView("/view/ListaRecursos.fxml");
 			} else {
 				Main.showAlert("Usuario Invalida", "Usuario Invalido", "ingrese un usuario valido.", Alert.AlertType.WARNING);
@@ -93,7 +90,6 @@ public class accesoPLController implements ClearCampos {
 				String role = "admin";
 				Usuario user = new Usuario(nombre, correo, pass, role);
 				usuarioDAO.save(user);
-				limpiarCampos();
 			} else {
 				Main.showAlert("Error!.", "Registro Erroneo!", "El usuario que acabas de poner ya esta registrado en el sistema.", Alert.AlertType.ERROR);
 			}
@@ -107,7 +103,6 @@ public class accesoPLController implements ClearCampos {
 				String role1 = "teacher";
 				Usuario user1 = new Usuario(nombre1, correo1, pass1, role1);
 				usuarioDAO.save(user1);
-				limpiarCampos();
 			} else {
 				Main.showAlert("Error!.", "Registro Erroneo!", "El usuario que acabas de poner ya esta registrado en el sistema.", Alert.AlertType.ERROR);
 			}
@@ -121,7 +116,6 @@ public class accesoPLController implements ClearCampos {
 				String role2 = "supervisor";
 				Usuario user2 = new Usuario(nombre2, correo2, pass2, role2);
 				usuarioDAO.save(user2);
-				limpiarCampos();
 			} else {
 				Main.showAlert("Error!.", "Registro Erroneo!", "El usuario que acabas de poner ya esta registrado en el sistema.", Alert.AlertType.ERROR);
 			}

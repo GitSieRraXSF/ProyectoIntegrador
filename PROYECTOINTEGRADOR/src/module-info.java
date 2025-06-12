@@ -8,5 +8,7 @@ module PROYECTOINTEGRADOR {
 	requires poi;
 	requires poi.ooxml;
 	
+	opens Controller;
 	opens Application to javafx.graphics, javafx.fxml;
+	opens Model to javafx.base, javafx.controls;
 }
